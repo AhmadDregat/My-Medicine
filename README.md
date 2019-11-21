@@ -1,3 +1,2 @@
 # MyMedicine
-# MyMedicine
-# My-Medicine
+
