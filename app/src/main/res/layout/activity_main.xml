@@ -10,8 +10,8 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="190dp"
-        android:layout_height="100dp"
+        android:layout_width="240dp"
+        android:layout_height="70dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
@@ -26,8 +26,8 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="195dp"
-        android:layout_height="110dp"
+        android:layout_width="240dp"
+        android:layout_height="70dp"
         android:layout_marginTop="32dp"
 
         android:layout_marginEnd="32dp"
@@ -46,8 +46,8 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="190dp"
-        android:layout_height="100dp"
+        android:layout_width="240dp"
+        android:layout_height="70dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
@@ -62,8 +62,8 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="194dp"
-        android:layout_height="94dp"
+        android:layout_width="240dp"
+        android:layout_height="70dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
@@ -87,9 +87,9 @@
         android:id="@+id/imageView"
         android:layout_width="60dp"
         android:layout_height="100dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginLeft="97dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="148dp"
         android:layout_marginEnd="29dp"
         android:layout_marginRight="29dp"
         app:layout_constraintEnd_toStartOf="@+id/button1"
@@ -102,13 +102,12 @@
         android:id="@+id/imageView2"
         android:layout_width="60dp"
         android:layout_height="100dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginLeft="97dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginEnd="29dp"
         android:layout_marginRight="29dp"
         app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/patient" />
@@ -117,13 +116,12 @@
         android:id="@+id/imageView3"
         android:layout_width="60dp"
         android:layout_height="100dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginLeft="97dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginEnd="29dp"
         android:layout_marginRight="29dp"
         app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:srcCompat="@drawable/rokeh" />
@@ -132,18 +130,15 @@
         android:id="@+id/imageView4"
         android:layout_width="60dp"
         android:layout_height="100dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginLeft="97dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/drug" />
 
     <ImageView
@@ -151,9 +146,9 @@
         android:layout_width="408dp"
         android:layout_height="80dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/my_medicine" />
+        app:srcCompat="@drawable/my_medicine"
+        tools:layout_editor_absoluteY="-12dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
