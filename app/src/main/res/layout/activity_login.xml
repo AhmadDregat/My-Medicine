@@ -47,20 +47,23 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_above="@+id/textView"
         android:layout_below="@id/editText2"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:layout_marginBottom="223dp"
         app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="25dp"
-        app:cardElevation="10dp"
-        android:layout_marginTop="68dp"
-        >
+        app:cardElevation="10dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
@@ -68,23 +71,21 @@
                 android:layout_centerInParent="true"
                 android:text="login"
                 android:textColor="#fff"
-                android:textSize="18sp"
-                />
+                android:textSize="18sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <TextView
 
-        android:layout_width="wrap_content"
         android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginBottom="43dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Register Here. "
-        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small"
-        android:textSize="14sp"
+        android:layout_marginBottom="43dp"
         android:clickable="true"
-        />
+        android:text="Not registered ? sign up Here."
+        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small"
+        android:textSize="14sp" />
 </RelativeLayout>
