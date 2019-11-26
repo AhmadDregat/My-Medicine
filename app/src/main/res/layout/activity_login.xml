@@ -7,18 +7,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradeintlogin"
     tools:context=".loginActivity">
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="120dp"
         android:layout_height="150dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/logo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/logo"
 
         />
 
     <EditText
+
         android:id="@+id/editText"
         android:layout_width="300dp"
         android:layout_height="40dp"
@@ -35,6 +37,7 @@
         android:textSize="16dp" />
 
     <EditText
+
         android:id="@+id/editText2"
         android:layout_width="300dp"
         android:layout_height="40dp"
@@ -47,33 +50,6 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/textView"
-        android:layout_below="@id/editText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp"
-        android:layout_marginBottom="223dp"
-        app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="login"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 
     <TextView
 
@@ -88,4 +64,20 @@
         android:text="Not registered ? sign up Here."
         android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small"
         android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/textView"
+        android:layout_below="@+id/editText2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="132dp"
+        android:text="Log In"
+        android:textAllCaps="false"
+        android:textColor="#313435"
+        android:textColorHint="#D3251C1C"
+        android:textSize="30sp" />
+
 </RelativeLayout>
