@@ -23,6 +23,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class registerActivity extends AppCompatActivity {
     private EditText Emailid , password,name,phone ;
     private Button Register_Button;
@@ -78,6 +81,7 @@ public class registerActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(registerActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show();
                 }
+              //  converttohash(pwd);
 
             }
 
@@ -99,6 +103,25 @@ public class registerActivity extends AppCompatActivity {
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
-
+//    public void converttohash (String password){
+//        try {
+//            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+//            digest.update(password.getBytes());
+//            byte messageDigest[] = digest.digest();
+//            StringBuffer MD5Hash = new StringBuffer();
+//            for (int i = 0; i <= messageDigest.length; i++) {
+//                String h = Integer.toHexString(0XFF & messageDigest[i]);
+//                while (h.length() < 2) {
+//                    h = "0" + h;
+//                    MD5Hash.append(h);
+//                }
+////              result.setText(MD5Hash);
+//
+//            }
+//        }
+//            catch (NoSuchAlgorithmException e) {
+//                e.printStackTrace();
+//            }
+//    }
 
 }
