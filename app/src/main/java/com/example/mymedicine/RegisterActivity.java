@@ -27,13 +27,15 @@ import java.util.ArrayList;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText emailText, passwordText, nameText, phoneText;
-    private Button registerBtn;
+    Product prod ;
+
     private FirebaseAuth firebaseAuth;
     private TextView signinText;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseRef;
     private Users user;
-    Product prod ;
+    private Button registerBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +50,28 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //   ArrayList<String> arr=null;
                 String email = emailText.getText().toString().trim();
                 String pass = passwordText.getText().toString().trim();
                 String name = nameText.getText().toString().trim();
                 String phone = phoneText.getText().toString().trim();
                 user = new Users( email, name, phone);
+
+                // TextView
+                String text = "Already have an account ? Sign in here ";
+
+                SpannableString ss = new SpannableString(text);
+
+                ClickableSpan clickableSpan1 = new ClickableSpan() {
+                    @Override
+                    public void onClick(View widget) {
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                };
+                ss.setSpan(clickableSpan1, 26, 38, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                signinText.setText(ss);
+                signinText.setMovementMethod(LinkMovementMethod.getInstance());
+
                 if (email.isEmpty()) {
                     emailText.setError(" please enter email id");
                     emailText.requestFocus();
@@ -68,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Sign up Unsuccessful ,Please Try Again  ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Sign up Unsuccessful,Please Try Again ", Toast.LENGTH_SHORT).show();
 
                             }
                             databaseRef = database.getReference("users");
@@ -81,28 +99,10 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegisterActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show();
                 }
-              //  databaseRef = database.getReference().child("users");
-               // databaseRef.setValue(user);
-
             }
 
         });
-        // TextView
-        String text = "Already have an account ? Sign in here ";
 
-        SpannableString ss = new SpannableString(text);
-
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
-            @Override
-            public void onClick(View widget) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        };
-
-        ss.setSpan(clickableSpan1, 26, 38, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        signinText.setText(ss);
-        signinText.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
 
