@@ -48,9 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         }
         restpassword=findViewById(R.id.forget_password_link);
         emailText = findViewById(R.id.emailText);
+        regText = findViewById(R.id.regText);
         passwordText = findViewById(R.id.passText);
         loginBtn = findViewById(R.id.loginButton);
-        regText = findViewById(R.id.regText);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -67,6 +67,31 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         };
+        String text = "Not registered ? sign up here.";
+        SpannableString ss = new SpannableString(text);
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        };
+
+        ss.setSpan(clickableSpan1, 17, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        regText.setText(ss);
+        regText.setMovementMethod(LinkMovementMethod.getInstance());
+        String text2="Forgot Password?";
+        SpannableString ss2=new SpannableString(text2);
+        ClickableSpan click2=new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Intent intent=new Intent(LoginActivity.this, ResetPassword.class);
+                startActivity(intent);
+            }
+        };
+        ss2.setSpan(click2,0,text2.length(), Spanned.SPAN_COMPOSING);
+        restpassword.setText(ss2);
+        restpassword.setMovementMethod(LinkMovementMethod.getInstance());
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,31 +138,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        String text = "Not registered ? sign up here.";
-        SpannableString ss = new SpannableString(text);
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
-            @Override
-            public void onClick(View widget) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        };
-
-        ss.setSpan(clickableSpan1, 17, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        regText.setText(ss);
-        regText.setMovementMethod(LinkMovementMethod.getInstance());
-        String text2="Forgot Password?";
-        SpannableString ss2=new SpannableString(text2);
-        ClickableSpan click2=new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                Intent intent=new Intent(LoginActivity.this, ResetPassword.class);
-                startActivity(intent);
-            }
-        };
-        ss2.setSpan(click2,0,text2.length(), Spanned.SPAN_COMPOSING);
-        restpassword.setText(ss2);
-        restpassword.setMovementMethod(LinkMovementMethod.getInstance());
 
     }
     @Override
