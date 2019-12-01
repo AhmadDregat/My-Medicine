@@ -6,25 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradeintlogin"
-    tools:context=".loginActivity">
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="120dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/logo"
-
-        />
+    tools:context=".LoginActivity">
 
     <EditText
 
-        android:id="@+id/editText"
+        android:id="@+id/emailText"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_below="@id/imageView5"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="68dp"
         android:autofillHints=""
@@ -38,12 +26,12 @@
 
     <EditText
 
-        android:id="@+id/editText2"
+        android:id="@+id/passText"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_below="@id/editText"
-        android:layout_alignStart="@id/editText"
-        android:layout_alignLeft="@id/editText"
+        android:layout_below="@id/emailText"
+        android:layout_alignStart="@id/emailText"
+        android:layout_alignLeft="@id/emailText"
         android:layout_marginTop="38dp"
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_lock"
@@ -53,7 +41,7 @@
 
     <TextView
 
-        android:id="@+id/textView"
+        android:id="@+id/regText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -66,11 +54,10 @@
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/loginButton"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_above="@+id/textView"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/passText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="132dp"
