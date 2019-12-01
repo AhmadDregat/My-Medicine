@@ -52,21 +52,21 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginButton);
         regText = findViewById(R.id.regText);
 
-//        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
-//                if (mFirebaseUser != null) {
-//                    Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-//                    startActivity(i);
-//                } else {
-//                    Toast.makeText(LoginActivity.this, "Please login  ", Toast.LENGTH_SHORT).show();
-//
-//                }
-//
-//            }
-//        };
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
+                if (mFirebaseUser != null) {
+                    Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please login  ", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        };
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
