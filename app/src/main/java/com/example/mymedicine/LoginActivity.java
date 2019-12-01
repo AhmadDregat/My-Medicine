@@ -22,18 +22,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-
-    EditText emailText, passwordText;
     Button loginBtn;
-    FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    EditText passwordText, emailText;
     TextView regText,restpassword;
     private FirebaseUser user;
-
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        restpassword=findViewById(R.id.forget_password_link);
+        emailText = findViewById(R.id.emailText);
+        regText = findViewById(R.id.regText);
+        passwordText = findViewById(R.id.passText);
+        loginBtn = findViewById(R.id.loginButton);
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser()!=null){
             if(firebaseAuth.getCurrentUser().getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
@@ -46,11 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         }
-        restpassword=findViewById(R.id.forget_password_link);
-        emailText = findViewById(R.id.emailText);
-        regText = findViewById(R.id.regText);
-        passwordText = findViewById(R.id.passText);
-        loginBtn = findViewById(R.id.loginButton);
+
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
