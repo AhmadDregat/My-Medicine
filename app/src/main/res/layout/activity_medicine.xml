@@ -27,6 +27,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 android:orientation="horizontal">
 
                 <CheckBox
@@ -37,8 +38,9 @@
 
                 <ImageButton
                     android:id="@+id/akamol_1_btn"
-                    android:layout_width="148dp"
-                    android:layout_height="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     app:srcCompat="@drawable/akamol_mid" />
             </LinearLayout>
             <LinearLayout
@@ -52,8 +54,9 @@
                     android:text="Akamol" />
                 <ImageButton
                     android:id="@+id/akamol_2_btn"
-                    android:layout_width="148dp"
-                    android:layout_height="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     app:srcCompat="@drawable/akamol2_mid" />
 
             </LinearLayout>
@@ -69,8 +72,9 @@
                     android:text="Deksamol" />
                 <ImageButton
                     android:id="@+id/deksamol_btn"
-                    android:layout_width="148dp"
-                    android:layout_height="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     app:srcCompat="@drawable/dexamol_mid" />
 
             </LinearLayout>
@@ -86,8 +90,9 @@
                     android:text="Norfine" />
                 <ImageButton
                     android:id="@+id/norfine_btn"
-                    android:layout_width="148dp"
-                    android:layout_height="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     app:srcCompat="@drawable/norofine_mid" />
 
             </LinearLayout>
@@ -103,8 +108,9 @@
                     android:text="Advil" />
                 <ImageButton
                     android:id="@+id/advil_btn"
-                    android:layout_width="148dp"
-                    android:layout_height="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
                     app:srcCompat="@drawable/akamol_mid" />
 
             </LinearLayout>
@@ -123,6 +129,7 @@
                     android:id="@+id/ansoline_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     app:srcCompat="@drawable/ansolin_mid" />
             </LinearLayout>
             <LinearLayout
@@ -131,13 +138,14 @@
                 android:orientation="horizontal">
                 <CheckBox
                     android:id="@+id/ledmismel"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ledmismel" />
                 <ImageButton
                     android:id="@+id/ledmismel_btn"
-                    android:layout_width="148dp"
-                    android:layout_height="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     app:srcCompat="@drawable/ledmismel_mid" />
 
             </LinearLayout>
@@ -154,8 +162,9 @@
                     android:text="Stripses" />
                 <ImageButton
                     android:id="@+id/stripses_btn"
-                    android:layout_width="148dp"
-                    android:layout_height="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
                     app:srcCompat="@drawable/stripses_mid" />
 
             </LinearLayout>
@@ -171,8 +180,9 @@
                     android:text="Bionerca" />
                 <ImageButton
                     android:id="@+id/bionerca_btn"
-                    android:layout_width="148dp"
-                    android:layout_height="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     app:srcCompat="@drawable/bionerca_mid" />
 
             </LinearLayout>
@@ -188,23 +198,22 @@
                     android:text="Optalgine" />
                 <ImageButton
                     android:id="@+id/optalgin_btn"
-                    android:layout_width="148dp"
-                    android:layout_height="68dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     app:srcCompat="@drawable/optalgin" />
+
+
 
             </LinearLayout>
 
-
-
-
-
-
-
-
-
-
-
-
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="submit"
+                android:onClick="SaveTODataBase"/>
 
         </LinearLayout>
 

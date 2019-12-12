@@ -35,13 +35,17 @@ public class MainActivity extends AppCompatActivity {
         rxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveToLogin();
+                moveTOMedicine();
             }
         });
     }
 
     public void moveToLogin() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+    public void moveTOMedicine() {
+        Intent intent = new Intent(MainActivity.this, MedicineActivity.class);
         startActivity(intent);
     }
 }
