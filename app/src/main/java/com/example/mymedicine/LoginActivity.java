@@ -22,12 +22,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
     EditText emailText, passwordText;
     Button loginBtn;
     FirebaseAuth firebaseAuth;
-    TextView regText;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-
+    TextView regText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         };
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +102,6 @@ public class LoginActivity extends AppCompatActivity {
         regText.setText(ss);
         regText.setMovementMethod(LinkMovementMethod.getInstance());
     }
-
     @Override
     protected void onStart() {
         super.onStart();
