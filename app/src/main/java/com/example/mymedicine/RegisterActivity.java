@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseRef;
     private Users user;
-
+    My_Cart prod ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass = passwordText.getText().toString().trim();
                 String name = nameText.getText().toString().trim();
                 String phone = phoneText.getText().toString().trim();
-                user = new Users(name, email, pass, phone,arr);
+                user = new Users(name, email, pass, phone,  prod);
                 if (email.isEmpty()) {
                     emailText.setError(" please enter email id");
                     emailText.requestFocus();
@@ -70,11 +70,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Sign up Unsuccessful ,Please Try Again  ", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                startActivity(new Intent(RegisterActivity.this, first_Activity.class));
+                                startActivity(new Intent(RegisterActivity.this, MedicineActivity.class));
                             }
                         }
                     });
-                    databaseRef = database.getReference("user");
+                    databaseRef = database.getReference().child("users");
                     databaseRef.setValue(user);
                 } else {
                     Toast.makeText(RegisterActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show();

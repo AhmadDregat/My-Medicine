@@ -5,19 +5,19 @@ import java.util.Collections;
 
 public class Users {
     private String name, email, password, phone;
-    private ArrayList<String>med;
+    private My_Cart product;
 
-    public Users(String a, String b, String c, String d, ArrayList<String>arr) {
-        name = a;
-        email = b;
-        password = c;
-        phone = d;
-         med = new ArrayList<String>(arr.size());
-        for (String i : arr) {
-            med.add(new String(i));
-        }
-        }
-    public ArrayList<String> getMed() { return med; }
+    public Users(String name, String email, String password, String phone, My_Cart product) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.product = product;
+    }
+
+    public My_Cart getProduct() {
+        return product;
+    }
 
     public String getname() {
         return name;

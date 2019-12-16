@@ -2,6 +2,7 @@ package com.example.mymedicine;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -89,8 +90,10 @@ public class MedicineActivity extends AppCompatActivity {
     }
 
     public void SaveTODataBase(View view) {
-        databaseRef = database.getReference("user");
+        databaseRef = database.getReference().child("Users");
         databaseRef.setValue(prod);
+       // Intent tohome = new Intent(MedicineActivity.this, first_Activity.class);
+        //startActivity(tohome);
 
     }
 }

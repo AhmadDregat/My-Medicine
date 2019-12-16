@@ -2,7 +2,7 @@ package com.example.mymedicine;
 
 public class My_Cart {
 
-    private String pid, name, price, description, Dosage_form, Syndrome;
+    private String pid, name, price, description;
 
     public My_Cart(String pid, String name, String price, String description) {
         this.pid = pid;
