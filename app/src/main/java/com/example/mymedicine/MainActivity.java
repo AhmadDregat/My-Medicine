@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 moveToLogin();
             }
         });
+
         rxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,13 +40,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void moveTOMedicine() {
+        Intent intent = new Intent(MainActivity.this, MedicineActivity.class);
+        startActivity(intent);
+    }
 
     public void moveToLogin() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
-    public void moveTOMedicine() {
-        Intent intent = new Intent(MainActivity.this, MedicineActivity.class);
-        startActivity(intent);
-    }
+
 }
