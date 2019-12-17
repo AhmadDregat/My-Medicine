@@ -1,4 +1,4 @@
-package com.example.mymedicine;
+package com.example.mymedicine.model;
 
 public class My_Cart {
 
