@@ -1,42 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradeintlogin"
+    android:orientation="vertical"
     tools:context=".RegisterActivity">
 
-    <EditText
-        android:id="@+id/phoneText"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/passText"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="56dp"
-        android:autofillHints=""
-        android:background="#11000000"
-        android:drawableLeft="@drawable/ic_action_phone"
-        android:ems="10"
-        android:hint="Phone"
-        android:inputType="phone"
-        android:text=""
-        android:textSize="16dp" />
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/logo"
+        android:layout_marginStart="100dp"
+        />
 
     <EditText
         android:id="@+id/emailText"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/nameText"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="56dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="50dp"
         android:autofillHints=""
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_mail"
@@ -50,11 +35,8 @@
         android:id="@+id/nameText"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="56dp"
+        android:layout_marginStart="50dp"
         android:autofillHints=""
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_name"
@@ -68,43 +50,45 @@
         android:id="@+id/passText"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/emailText"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="56dp"
+        android:layout_marginStart="50dp"
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_lock"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/signinText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/regButton"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="81dp"
-        android:layout_marginLeft="81dp"
-        android:layout_marginTop="80dp"
-        android:text="Already have an account ? Sign in here " />
+    <EditText
+        android:id="@+id/phoneText"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="50dp"
+        android:autofillHints=""
+        android:background="#11000000"
+        android:drawableLeft="@drawable/ic_action_phone"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:textSize="16dp" />
 
     <Button
         android:id="@+id/regButton"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/phoneText"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginStart="50dp"
         android:text="Register Here"
         android:textAllCaps="false" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/signinText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="80dp"
+        android:text="Already have an account ? Sign in here " />
+
+
+</LinearLayout>

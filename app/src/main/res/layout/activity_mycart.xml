@@ -2,11 +2,12 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:id="@+id/drawer_layout"
+    tools:context=".myCart">
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,25 +22,17 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:elevation="4dp" />
         <ImageView
-            android:id="@+id/firstProduct"
+            android:id="@+id/firstStuff"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/akamol_mid"/>
-        <Button
-            android:id="@+id/addtocard_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="add to cart"/>
+            android:background="@drawable/akamol_mid"
+            android:visibility="invisible"/>
         <ImageView
-            android:id="@+id/SecondProduct"
+            android:id="@+id/SecondStuff"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/ansolin_mid"/>
-        <Button
-            android:id="@+id/addtocard_btn2"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="add to cart"/>
+            android:background="@drawable/ansolin_mid"
+            android:visibility="invisible" />
         <FrameLayout
             android:id="@+id/framgment_container"
             android:layout_width="match_parent"
@@ -55,5 +48,4 @@
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/activity_home_drawer"
         />
-
 </androidx.drawerlayout.widget.DrawerLayout>

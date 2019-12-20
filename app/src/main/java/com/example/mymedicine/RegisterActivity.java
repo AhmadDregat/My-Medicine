@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mymedicine.model.Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseRef;
     private Users user;
-    My_Cart prod ;
+    Product prod ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass = passwordText.getText().toString().trim();
                 String name = nameText.getText().toString().trim();
                 String phone = phoneText.getText().toString().trim();
-                user = new Users(name, email, pass, phone,  prod);
+                user = new Users(name, email,  phone);
                 if (email.isEmpty()) {
                     emailText.setError(" please enter email id");
                     emailText.requestFocus();
@@ -70,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Sign up Unsuccessful ,Please Try Again  ", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                startActivity(new Intent(RegisterActivity.this, MedicineActivity.class));
+                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             }
                         }
                     });
