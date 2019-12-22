@@ -5,23 +5,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import com.example.mymedicine.R;
+import com.example.mymedicine.model.MyCart;
 import com.example.mymedicine.model.Product;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.internal.NavigationMenuItemView;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +29,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,14 +55,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        if(user.getUid().equals("WQhWwZThuYdFIRta2jOcnXtku0p2")){
+        if(user.getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
             MenuItem menuItem = navigationView.getMenu().getItem(2);
             menuItem.setVisible(true);
         }
-        myRef = database.getReference("Client");
+        myRef = database.getReference("users");
         setDataView(myRef);
-//        toolbar =findViewById(R.id.toolbar);
-//        setActionBar(toolbar);
+        toolbar =findViewById(R.id.toolbar);
+        setActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
         FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -163,16 +155,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Users med = dataSnapshot.child(user.getUid()).getValue(Users.class);
+                Users med;
+                med = dataSnapshot.child(user.getUid()).getValue(Users.class);
                 NavigationView navigationView = findViewById(R.id.nav_view);
                 navigationView.setNavigationItemSelectedListener(HomeActivity.this);
                 View header = navigationView.getHeaderView(0);
-//                TextView text = (TextView) header.findViewById(R.id.username_nav);
-//                text.setText(med.getUser());
-//                text.setTextColor(Color.WHITE);
-//                TextView text2 = (TextView) header.findViewById(R.id.email_nav);
-//                text2.setText(med.getEmail());
-//                text2.setTextColor(Color.WHITE);
+                TextView text = (TextView) header.findViewById(R.id.username_nav);
+                text.setText(med.getUser());
+                text.setTextColor(Color.WHITE);
+                TextView text2 = (TextView) header.findViewById(R.id.email_nav);
+                text2.setText(med.getEmail());
+                text2.setTextColor(Color.WHITE);
             }
 
             @Override

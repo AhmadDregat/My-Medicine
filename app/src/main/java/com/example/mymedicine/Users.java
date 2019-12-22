@@ -6,20 +6,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Users {
+
+    public Users()
+    { }
+
     private Map<String, Product> carts;
     private String _email, _user, _phone;
-
-    public Users() {
-    }
 
     public Users(String mail, String user, String phone) {
         this._email = mail;
         this._user = user;
         carts = new HashMap<>();
         this._phone = phone;
-
     }
-
     public void setEmail(String mail) {
         this._email = mail;
     }

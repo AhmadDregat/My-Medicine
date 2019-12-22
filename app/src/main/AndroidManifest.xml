@@ -9,8 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminCategoryActivity"></activity>
-        <activity android:name=".MyCart" />
+        <activity android:name=".AdminActivity"></activity>
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdminCategoryActivity" />
+        <activity android:name=".model.MyCart" />
         <activity android:name=".MedicineActivity" />
         <activity android:name=".first_Activity" />
         <activity android:name=".RegisterActivity" />

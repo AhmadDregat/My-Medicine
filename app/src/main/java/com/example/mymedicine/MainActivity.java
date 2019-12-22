@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
                 moveToLogin();
             }
         });
-
         rxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

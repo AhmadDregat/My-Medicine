@@ -70,16 +70,19 @@ public class RegisterActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(RegisterActivity.this, "Sign up Unsuccessful ,Please Try Again  ", Toast.LENGTH_SHORT).show();
 
-                            } else {
-                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             }
+                            databaseRef = database.getReference("Client");
+                            databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+                            startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                            finish();
                         }
                     });
-                    databaseRef = database.getReference().child("users");
-                    databaseRef.setValue(user);
+
                 } else {
                     Toast.makeText(RegisterActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show();
                 }
+                databaseRef = database.getReference().child("users");
+                databaseRef.setValue(user);
 
             }
 

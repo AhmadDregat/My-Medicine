@@ -1,8 +1,10 @@
-package com.example.mymedicine;
+package com.example.mymedicine.model;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.mymedicine.R;
 
 public class MyCart extends AppCompatActivity {
 

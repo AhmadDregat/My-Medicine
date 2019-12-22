@@ -27,16 +27,29 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    TextView regText;
+    TextView regText,restpassword;
+    private FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser()!=null){
+            if(firebaseAuth.getCurrentUser().getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
+                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                startActivity(intent);
+                finish();
+            }else {
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                finish();
+            }
+        }
+        restpassword=findViewById(R.id.forget_password_link);
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passText);
         loginBtn = findViewById(R.id.loginButton);
         regText = findViewById(R.id.regText);
-        firebaseAuth = FirebaseAuth.getInstance();
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -76,8 +89,16 @@ public class LoginActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Login Error , Please try again ", Toast.LENGTH_SHORT).show();
                             } else {
-                                Intent tohome = new Intent(LoginActivity.this,HomeActivity.class);
-                                startActivity(tohome);
+                                user = firebaseAuth.getCurrentUser();
+                                if (user.getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")) {
+                                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
                             }
                         }
                     });
@@ -101,6 +122,19 @@ public class LoginActivity extends AppCompatActivity {
         ss.setSpan(clickableSpan1, 17, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         regText.setText(ss);
         regText.setMovementMethod(LinkMovementMethod.getInstance());
+        String text2="Forgot Password?";
+        SpannableString ss2=new SpannableString(text2);
+        ClickableSpan click2=new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Intent intent=new Intent(LoginActivity.this, ResetPassword.class);
+                startActivity(intent);
+            }
+        };
+        ss2.setSpan(click2,0,text2.length(), Spanned.SPAN_COMPOSING);
+        restpassword.setText(ss2);
+        restpassword.setMovementMethod(LinkMovementMethod.getInstance());
+
     }
     @Override
     protected void onStart() {
