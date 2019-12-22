@@ -48,12 +48,12 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> arr=null;
+             //   ArrayList<String> arr=null;
                 String email = emailText.getText().toString().trim();
                 String pass = passwordText.getText().toString().trim();
                 String name = nameText.getText().toString().trim();
                 String phone = phoneText.getText().toString().trim();
-                user = new Users(name, email,  phone);
+                user = new Users( email, name, phone);
                 if (email.isEmpty()) {
                     emailText.setError(" please enter email id");
                     emailText.requestFocus();
@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Sign up Unsuccessful ,Please Try Again  ", Toast.LENGTH_SHORT).show();
 
                             }
-                            databaseRef = database.getReference("Client");
+                            databaseRef = database.getReference("users");
                             databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
                             startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                             finish();
@@ -81,8 +81,8 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegisterActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show();
                 }
-                databaseRef = database.getReference().child("users");
-                databaseRef.setValue(user);
+              //  databaseRef = database.getReference().child("users");
+               // databaseRef.setValue(user);
 
             }
 

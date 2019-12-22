@@ -35,37 +35,38 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser()!=null){
-            if(firebaseAuth.getCurrentUser().getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
-                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                startActivity(intent);
-                finish();
-            }else {
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                finish();
-            }
-        }
+//        if (firebaseAuth.getCurrentUser()!=null){
+//            if(firebaseAuth.getCurrentUser().getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
+//                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//            else {
+//                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+//                finish();
+//            }
+//        }
         restpassword=findViewById(R.id.forget_password_link);
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passText);
         loginBtn = findViewById(R.id.loginButton);
         regText = findViewById(R.id.regText);
 
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
-                if (mFirebaseUser != null) {
-                    Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(i);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Please login  ", Toast.LENGTH_SHORT).show();
-
-                }
-
-            }
-        };
+//        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
+//                if (mFirebaseUser != null) {
+//                    Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
+//                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+//                    startActivity(i);
+//                } else {
+//                    Toast.makeText(LoginActivity.this, "Please login  ", Toast.LENGTH_SHORT).show();
+//
+//                }
+//
+//            }
+//        };
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +140,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(mAuthStateListener);
+     //   firebaseAuth.addAuthStateListener(mAuthStateListener);
     }
 }

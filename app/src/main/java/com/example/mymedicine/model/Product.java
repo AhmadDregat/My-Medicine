@@ -3,9 +3,9 @@ package com.example.mymedicine.model;
 public class Product {
 
     private String pid, name, description;
-    private double  price ;
-
-    public Product(String pid, String name, String description, double price) {
+    private String  price ;
+    public Product(){}
+    public Product(String pid, String name, String description, String price) {
         this.pid = pid;
         this.name = name;
         this.description = description;
@@ -36,11 +36,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }

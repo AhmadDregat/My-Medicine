@@ -10,37 +10,38 @@ public class Users {
     public Users()
     { }
 
+
+    private String email, user, phone;
     private Map<String, Product> carts;
-    private String _email, _user, _phone;
 
     public Users(String mail, String user, String phone) {
-        this._email = mail;
-        this._user = user;
+        this.email = mail;
+        this.user = user;
         carts = new HashMap<>();
-        this._phone = phone;
+        this.phone = phone;
     }
     public void setEmail(String mail) {
-        this._email = mail;
+        this.email = mail;
     }
 
     public void setUser(String user) {
-        this._user = user;
+        this.user = user;
     }
 
     public void setPhone(String phone) {
-        this._phone = phone;
+        this.phone = phone;
     }
 
     public String getEmail() {
-        return this._email;
+        return this.email;
     }
 
     public String getUser() {
-        return this._user;
+        return this.user;
     }
 
     public String getPhone() {
-        return this._phone;
+        return this.phone;
     }
 
     public Map<String, Product> getCarts() {
@@ -51,11 +52,11 @@ public class Users {
         carts.put(num, cart);
     }
 
-    public double totalPrice() {
-        double total = 0;
-        for (Product i : carts.values()) {
-            total += i.getPrice();
-        }
-        return total;
-    }
+//    public double totalPrice() {
+//        double total = 0;
+//        for (Product i : carts.values()) {
+//            total += i.getPrice();
+//        }
+//        return total;
+//    }
 }

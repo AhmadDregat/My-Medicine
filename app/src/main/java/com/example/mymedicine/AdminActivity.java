@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_admin);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("users");
+        myRef = database.getReference("");
         user = auth.getCurrentUser();
         setDataView(myRef);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -58,6 +59,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 View header = navigationView.getHeaderView(0);
                 TextView text = (TextView) header.findViewById(R.id.username_nav);
                 text.setText(med.getUser());
+                Log.d("admin actv", " uid = " + user.getUid() + " med = " + med + " email = " + med.getEmail());//
+
                 text.setTextColor(Color.WHITE);
                 TextView text2 = (TextView) header.findViewById(R.id.email_nav);
                 text2.setText(med.getEmail());
