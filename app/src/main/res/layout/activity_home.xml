@@ -20,6 +20,7 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:elevation="4dp" />
+
         <ImageView
             android:id="@+id/firstProduct"
             android:layout_width="200dp"

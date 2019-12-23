@@ -35,17 +35,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         firebaseAuth = FirebaseAuth.getInstance();
-//        if (firebaseAuth.getCurrentUser()!=null){
-//            if(firebaseAuth.getCurrentUser().getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
-//                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//            else {
-//                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-//                finish();
-//            }
-//        }
+        if (firebaseAuth.getCurrentUser()!=null){
+            if(firebaseAuth.getCurrentUser().getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
+                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            else {
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                finish();
+            }
+        }
         restpassword=findViewById(R.id.forget_password_link);
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passText);
@@ -89,9 +89,10 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Login Error , Please try again ", Toast.LENGTH_SHORT).show();
-                            } else {
+                            }
+                            else {
                                 user = firebaseAuth.getCurrentUser();
-                                if (user.getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")) {
+                                if(user.getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
                                     Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                                     startActivity(intent);
                                     finish();
@@ -100,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 }
+
+
                             }
                         }
                     });
@@ -140,6 +143,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-     //   firebaseAuth.addAuthStateListener(mAuthStateListener);
+    //    firebaseAuth.addAuthStateListener(mAuthStateListener);
     }
 }

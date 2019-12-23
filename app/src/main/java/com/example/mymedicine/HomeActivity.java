@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "add to card!", Toast.LENGTH_LONG).show();
 
-                myRef.child(user.getUid()).child("carts").child("akamol_mid").setValue(new Product("akamol_mid", null,null,"50.0")).addOnSuccessListener(new OnSuccessListener<Void>() {
+                myRef.child(user.getUid()).child("carts").child("akamol_mid").setValue(new Product("akamol_mid", null,null,50.0)).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(getApplicationContext(), "Stuff added to your card", Toast.LENGTH_LONG).show();
@@ -99,7 +99,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "add to card!", Toast.LENGTH_LONG).show();
-                myRef.child(user.getUid()).child("carts").child("ansolin_mid").setValue(new Product("ansolin_mid", null,null,"50.0")).addOnSuccessListener(new OnSuccessListener<Void>() {
+                myRef.child(user.getUid()).child("carts").child("ansolin_mid").setValue(new Product("ansolin_mid", null,null,50.0)).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(getApplicationContext(), "Stuff added to your card", Toast.LENGTH_LONG).show();
@@ -162,7 +162,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 navigationView.setNavigationItemSelectedListener(HomeActivity.this);
                 View header = navigationView.getHeaderView(0);
                 Log.d("admin actv", " uid = " + user.getUid() + " med = "+ med); //+ " email = "+med.getEmail()+" cart = " +med.getCarts().get("akamol_mid").getPid());
-
                 TextView text = (TextView) header.findViewById(R.id.username_nav);
                 text.setText(med.getUser());
                 text.setTextColor(Color.WHITE);
