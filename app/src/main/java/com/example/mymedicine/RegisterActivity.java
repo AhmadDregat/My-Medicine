@@ -33,10 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseRef;
     private Users user;
-    private TextView DoctorLink, PatientLink;
-    private String parentDbName = "Doctors" ;
     Product prod ;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,37 +44,16 @@ public class RegisterActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.passText);
         nameText = findViewById(R.id.nameText);
         phoneText = findViewById(R.id.phoneText);
-        DoctorLink = (TextView) findViewById(R.id.doctor_panel_link);
-        PatientLink = (TextView) findViewById(R.id.Patient_panel_link);
         registerBtn = findViewById(R.id.regButton);
-        DoctorLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerBtn.setText("Register As Doctor");
-                DoctorLink.setVisibility(View.INVISIBLE);
-                PatientLink.setVisibility(View.VISIBLE);
-                parentDbName = "Doctors";
-            }
-        });
-
-        PatientLink.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                registerBtn.setText("Register As Patient");
-                DoctorLink.setVisibility(View.VISIBLE);
-                PatientLink.setVisibility(View.INVISIBLE);
-                parentDbName = "Patient";
-            }
-        });
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+             //   ArrayList<String> arr=null;
                 String email = emailText.getText().toString().trim();
                 String pass = passwordText.getText().toString().trim();
                 String name = nameText.getText().toString().trim();
                 String phone = phoneText.getText().toString().trim();
-                user = new Users( email, name, phone,pass);
+                user = new Users( email, name, phone);
                 if (email.isEmpty()) {
                     emailText.setError(" please enter email id");
                     emailText.requestFocus();
@@ -94,22 +70,20 @@ public class RegisterActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(RegisterActivity.this, "Sign up Unsuccessful ,Please Try Again  ", Toast.LENGTH_SHORT).show();
 
-                            } if (PatientLink.getVisibility() == View.VISIBLE){
-                                PatientLink.setVisibility(View.GONE);
-                                databaseRef = database.getReference("users");
-                                databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
-                                finish();}
-                            else {
-                                databaseRef = database.getReference("Doctors ");
-                                databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
-                                finish();}
-
                             }
+                            databaseRef = database.getReference("users");
+                            databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+                            startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                            finish();
+                        }
                     });
 
                 } else {
                     Toast.makeText(RegisterActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show();
                 }
+              //  databaseRef = database.getReference().child("users");
+               // databaseRef.setValue(user);
+
             }
 
         });
