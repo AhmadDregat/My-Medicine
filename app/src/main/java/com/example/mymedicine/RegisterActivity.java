@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                 registerBtn.setText("Register As Patient");
                 DoctorLink.setVisibility(View.VISIBLE);
                 PatientLink.setVisibility(View.INVISIBLE);
-                parentDbName = "Patient";
+                parentDbName = "users";
             }
         });
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -98,12 +98,15 @@ public class RegisterActivity extends AppCompatActivity {
                                 PatientLink.setVisibility(View.GONE);
                                 databaseRef = database.getReference("Doctors");
                                 databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
-                                finish();}
+                                finish();
+                                Intent intent = new Intent(RegisterActivity.this, AdminActivity.class);
+                                startActivity(intent);}
                             else {
                                 databaseRef = database.getReference("users ");
                                 databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
                                 finish();}
-
+                                Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                                startActivity(intent);
                         }
                     });
 
