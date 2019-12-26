@@ -22,21 +22,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
+    EditText emailText, passwordText;
     Button loginBtn;
-    EditText passwordText, emailText;
+    FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
     TextView regText,restpassword;
     private FirebaseUser user;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
-    FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        restpassword=findViewById(R.id.forget_password_link);
-        emailText = findViewById(R.id.emailText);
-        regText = findViewById(R.id.regText);
-        passwordText = findViewById(R.id.passText);
-        loginBtn = findViewById(R.id.loginButton);
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser()!=null){
             if(firebaseAuth.getCurrentUser().getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
@@ -49,48 +46,27 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         }
+        restpassword=findViewById(R.id.forget_password_link);
+        emailText = findViewById(R.id.emailText);
+        passwordText = findViewById(R.id.passText);
+        loginBtn = findViewById(R.id.loginButton);
+        regText = findViewById(R.id.regText);
 
-
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
-                if (mFirebaseUser != null) {
-                    Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(i);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Please login  ", Toast.LENGTH_SHORT).show();
-
-                }
-
-            }
-        };
-        String text = "Not registered ? sign up here.";
-        SpannableString ss = new SpannableString(text);
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
-            @Override
-            public void onClick(View widget) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        };
-
-        ss.setSpan(clickableSpan1, 17, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        regText.setText(ss);
-        regText.setMovementMethod(LinkMovementMethod.getInstance());
-        String text2="Forgot Password?";
-        SpannableString ss2=new SpannableString(text2);
-        ClickableSpan click2=new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                Intent intent=new Intent(LoginActivity.this, ResetPassword.class);
-                startActivity(intent);
-            }
-        };
-        ss2.setSpan(click2,0,text2.length(), Spanned.SPAN_COMPOSING);
-        restpassword.setText(ss2);
-        restpassword.setMovementMethod(LinkMovementMethod.getInstance());
+//        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
+//                if (mFirebaseUser != null) {
+//                    Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
+//                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+//                    startActivity(i);
+//                } else {
+//                    Toast.makeText(LoginActivity.this, "Please login  ", Toast.LENGTH_SHORT).show();
+//
+//                }
+//
+//            }
+//        };
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +113,31 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        String text = "Not registered ? sign up here.";
+        SpannableString ss = new SpannableString(text);
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        };
+
+        ss.setSpan(clickableSpan1, 17, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        regText.setText(ss);
+        regText.setMovementMethod(LinkMovementMethod.getInstance());
+        String text2="Forgot Password?";
+        SpannableString ss2=new SpannableString(text2);
+        ClickableSpan click2=new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Intent intent=new Intent(LoginActivity.this, ResetPassword.class);
+                startActivity(intent);
+            }
+        };
+        ss2.setSpan(click2,0,text2.length(), Spanned.SPAN_COMPOSING);
+        restpassword.setText(ss2);
+        restpassword.setMovementMethod(LinkMovementMethod.getInstance());
 
     }
     @Override
