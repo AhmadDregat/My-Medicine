@@ -26,7 +26,7 @@
             android:id="@+id/firstProduct"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/akamol_mid" />
+            android:background="@drawable/drug" />
 
         <Toolbar
 
@@ -42,7 +42,7 @@
             android:id="@+id/SecondProduct"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/ansolin_mid" />
+            android:background="@drawable/drug" />
 
         <FrameLayout
             android:id="@+id/framgment_container"

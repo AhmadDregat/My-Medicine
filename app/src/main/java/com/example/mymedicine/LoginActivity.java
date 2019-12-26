@@ -3,6 +3,7 @@ package com.example.mymedicine;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -11,6 +12,14 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.mymedicine.model.Prevalent;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,58 +31,72 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-
-    EditText emailText, passwordText;
+    private EditText emailText, passwordText;
+    private TextView restpassword;
     Button loginBtn;
-    FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
-    TextView regText,restpassword;
+    private TextView DoctorLink, PatientLink;
+    private String parentDbName = "Users";
     private FirebaseUser user;
 
+    FirebaseAuth firebaseAuth;
+    private  DatabaseReference RootRef;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+//    private Users user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser()!=null){
-            if(firebaseAuth.getCurrentUser().getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
-                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                startActivity(intent);
-                finish();
-            }
-            else {
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                finish();
-            }
-        }
-        restpassword=findViewById(R.id.forget_password_link);
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passText);
         loginBtn = findViewById(R.id.loginButton);
-        regText = findViewById(R.id.regText);
+        firebaseAuth = FirebaseAuth.getInstance();
+        restpassword=findViewById(R.id.forget_password_link);
+        DoctorLink = (TextView) findViewById(R.id.doctor_panel_link);
+        PatientLink = (TextView) findViewById(R.id.Patient_panel_link);
+        RootRef= FirebaseDatabase.getInstance().getReference();
 
-//        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
-//                if (mFirebaseUser != null) {
-//                    Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-//                    startActivity(i);
-//                } else {
-//                    Toast.makeText(LoginActivity.this, "Please login  ", Toast.LENGTH_SHORT).show();
-//
-//                }
-//
-//            }
-//        };
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
+                if (mFirebaseUser != null) {
+                    Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(i);
 
+
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please login  ", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        };
+        DoctorLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginBtn.setText("Login Doctor");
+                DoctorLink.setVisibility(View.INVISIBLE);
+                PatientLink.setVisibility(View.VISIBLE);
+                parentDbName = "Doctors";
+            }
+        });
+
+        PatientLink.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                loginBtn.setText("Login Patient");
+                DoctorLink.setVisibility(View.VISIBLE);
+                PatientLink.setVisibility(View.INVISIBLE);
+                parentDbName = "Patient";
+            }
+        });
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String mail = emailText.getText().toString();
-                String pwd = passwordText.getText().toString();
+                final String mail = emailText.getText().toString();
+                final String pwd = passwordText.getText().toString();
                 if (mail.isEmpty()) {
                     emailText.setError(" please enter email id");
                     emailText.requestFocus();
@@ -85,64 +108,63 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (!(pwd.isEmpty() && mail.isEmpty())) {
                     firebaseAuth.signInWithEmailAndPassword(mail, pwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Login Error , Please try again ", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                user = firebaseAuth.getCurrentUser();
-                                if(user.getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
-                                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-
-
-                            }
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Login Error , Please try again ", Toast.LENGTH_SHORT).show();
                         }
+                        else {
+                            AllowAccessToAccount(mail, pwd);
+                        }
+                    }
                     });
-                } else {
-                    Toast.makeText(LoginActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show();
+                }
+                else {Toast.makeText(LoginActivity.this, "Error Ocurred! ", Toast.LENGTH_SHORT).show(); }
+            }
+        });
+    }
+    private void AllowAccessToAccount(final String email, final String password) {
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(parentDbName).child(email).exists()){
+                    Users usersData = dataSnapshot.child(parentDbName).child(email).getValue(Users.class);
+
+                    if(usersData.getEmail().equals(email)){
+                            if (parentDbName.equals("Doctors")){
+                                Toast.makeText(LoginActivity.this, "Welcome Doctor, you are logged in Successfully...", Toast.LENGTH_SHORT).show();
+
+
+                                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                startActivity(intent);
+                            }
+                            else if(parentDbName.equals("users")){
+                                Toast.makeText(LoginActivity.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                            }
+
+
+                        else{
+                            Toast.makeText(LoginActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
                 }
+                else{
+                    Toast.makeText(LoginActivity.this, "Account with this " + email + " number do not exists.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        String text = "Not registered ? sign up here.";
-        SpannableString ss = new SpannableString(text);
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
-            @Override
-            public void onClick(View widget) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        };
-
-        ss.setSpan(clickableSpan1, 17, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        regText.setText(ss);
-        regText.setMovementMethod(LinkMovementMethod.getInstance());
-        String text2="Forgot Password?";
-        SpannableString ss2=new SpannableString(text2);
-        ClickableSpan click2=new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                Intent intent=new Intent(LoginActivity.this, ResetPassword.class);
-                startActivity(intent);
-            }
-        };
-        ss2.setSpan(click2,0,text2.length(), Spanned.SPAN_COMPOSING);
-        restpassword.setText(ss2);
-        restpassword.setMovementMethod(LinkMovementMethod.getInstance());
-
     }
     @Override
     protected void onStart() {
         super.onStart();
-    //    firebaseAuth.addAuthStateListener(mAuthStateListener);
+        firebaseAuth.addAuthStateListener(mAuthStateListener);
     }
 }

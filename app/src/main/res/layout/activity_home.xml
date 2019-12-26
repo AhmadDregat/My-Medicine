@@ -25,7 +25,7 @@
             android:id="@+id/firstProduct"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/akamol_mid"/>
+            android:background="@drawable/drug"/>
         <Button
             android:id="@+id/addtocard_btn"
             android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             android:id="@+id/SecondProduct"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/ansolin_mid"/>
+            android:background="@drawable/drug"/>
         <Button
             android:id="@+id/addtocard_btn2"
             android:layout_width="wrap_content"

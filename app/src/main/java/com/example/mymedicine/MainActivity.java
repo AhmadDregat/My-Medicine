@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private Button doctorBtn, patientBtn, rxBtn;
+    private Button doctorBtn, patientBtn;
 
 
     @Override
@@ -18,32 +18,22 @@ public class MainActivity extends AppCompatActivity {
         // Buttons
         doctorBtn = findViewById(R.id.docButton);
         patientBtn = findViewById(R.id.patButton);
-        rxBtn = findViewById(R.id.rxButton);
         // Clicking behaviour
         doctorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveToLogin();
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
+
+
         patientBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveToLogin();
-            }
-        });
-        rxBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveToLogin();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
-
-
-    public void moveToLogin() {
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
-    }
-
 }

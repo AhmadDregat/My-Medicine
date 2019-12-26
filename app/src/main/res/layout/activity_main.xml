@@ -4,51 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/medicine"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/logo"
-        android:layout_marginStart="100dp"/>
-
     <Button
         android:id="@+id/docButton"
-        android:layout_width="390dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/custum_button"
+        android:layout_width="400dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="560dp"
+        android:backgroundTint="@color/cardview_shadow_end_color"
         android:shadowColor="#5959F6"
-        android:text="Doctor"
+        android:text="Join Now "
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold  "/>
 
-    <Button
-        android:id="@+id/rxButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/custum_button"
-        android:shadowColor="#5959FF"
-        android:text="Over the counter drug"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp" />
 
     <Button
         android:id="@+id/patButton"
-        android:layout_width="390dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/custum_button"
+        android:layout_width="400dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/cardview_shadow_end_color"
         android:shadowColor="#5959FF"
-        android:text="Patient"
+        android:text="Already have an Account?Login"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="30sp" />
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
 
 </LinearLayout>
