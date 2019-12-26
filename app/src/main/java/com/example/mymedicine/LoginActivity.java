@@ -127,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   dataSnapshot.child(user.getUid()).getValue(Users.class);
                 if(dataSnapshot.child(parentDbName).child(email).exists()){
                     Users usersData = dataSnapshot.child(parentDbName).child(email).getValue(Users.class);
 

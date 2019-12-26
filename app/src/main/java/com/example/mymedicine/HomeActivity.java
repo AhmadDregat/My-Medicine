@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
         addTocard = findViewById(R.id.addtocard_btn);
@@ -57,11 +57,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        if(user.getUid().equals("4nyAcaO0pATkx9qj4IBGFJVZvXV2")){
-            MenuItem menuItem = navigationView.getMenu().getItem(2);
-            menuItem.setVisible(true);
-        }
         myRef = database.getReference("users");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Users medUsers = dataSnapshot.child(user.getUid()).getValue(Users.class);
+                if(medUsers.getpermission().equals("Doctors")) {
+                    MenuItem menuItem = navigationView.getMenu().getItem(2);
+                    menuItem.setVisible(true);
+                    menuItem = navigationView.getMenu().getItem(3);
+                    menuItem.setVisible(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
         setDataView(myRef);
         toolbar =findViewById(R.id.toolbar);
         setActionBar(toolbar);
@@ -129,7 +142,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switch(menuItem.getItemId()){
             case R.id.nav_home:
 
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this, HomeActivity.class));
                 finish();
                 break;
             case R.id.nav_admin:

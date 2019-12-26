@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                 registerBtn.setText("Register As Patient");
                 DoctorLink.setVisibility(View.VISIBLE);
                 PatientLink.setVisibility(View.INVISIBLE);
-                parentDbName = "users";
+                parentDbName = "Patient";
             }
         });
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass = passwordText.getText().toString().trim();
                 String name = nameText.getText().toString().trim();
                 String phone = phoneText.getText().toString().trim();
-                user = new Users( email, name, phone,pass);
+                user = new Users( email, name, phone,pass,null);
                 if (email.isEmpty()) {
                     emailText.setError(" please enter email id");
                     emailText.requestFocus();
@@ -98,15 +98,16 @@ public class RegisterActivity extends AppCompatActivity {
                                 PatientLink.setVisibility(View.GONE);
                                 databaseRef = database.getReference("Doctors");
                                 databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
-                                finish();
-                                Intent intent = new Intent(RegisterActivity.this, AdminActivity.class);
-                                startActivity(intent);}
-                            else {
-                                databaseRef = database.getReference("users ");
-                                databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+                                Intent x= new Intent(RegisterActivity.this,AdminActivity.class );
+                                startActivity(x);
                                 finish();}
-                                Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                                startActivity(intent);
+                            else {
+                                databaseRef = database.getReference("users");
+                                databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+                                Intent x= new Intent(RegisterActivity.this,HomeActivity.class );
+                                startActivity(x);
+                                finish();}
+
                         }
                     });
 

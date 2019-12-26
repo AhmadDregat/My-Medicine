@@ -41,7 +41,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("users");
+        myRef = database.getReference("Doctors");
         user = auth.getCurrentUser();
         setDataView(myRef);
         NavigationView navigationView = findViewById(R.id.nav_view);

@@ -11,15 +11,17 @@ public class Users {
     { }
 
 
-    private String email, user, phone,password;
+    private String email, user, phone,password,permission;
     private Map<String, Product> carts;
 
-    public Users(String mail, String user, String phone, String password) {
+    public Users(String mail, String user, String phone, String password,String permission) {
         this.email = mail;
         this.user = user;
         carts = new HashMap<>();
         this.phone = phone;
         this.password=password;
+        this.permission="users";
+
     }
     public void setEmail(String mail) {
         this.email = mail;
@@ -34,6 +36,13 @@ public class Users {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getpermission() {
+        return this.permission;
+    }
+    public void permission(String permission) {
+        this.permission = permission;
     }
 
     public String getEmail() {
