@@ -96,11 +96,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                             } if (PatientLink.getVisibility() == View.VISIBLE){
                                 PatientLink.setVisibility(View.GONE);
-                                databaseRef = database.getReference("users");
+                                databaseRef = database.getReference("Doctors");
                                 databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
                                 finish();}
                             else {
-                                databaseRef = database.getReference("Doctors ");
+                                databaseRef = database.getReference("users ");
                                 databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
                                 finish();}
 

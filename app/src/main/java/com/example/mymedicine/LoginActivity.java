@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView restpassword;
     Button loginBtn;
     private TextView DoctorLink, PatientLink;
-    private String parentDbName = "Users";
+    private String parentDbName = "users";
     private FirebaseUser user;
 
     FirebaseAuth firebaseAuth;
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginBtn.setText("Login Patient");
                 DoctorLink.setVisibility(View.VISIBLE);
                 PatientLink.setVisibility(View.INVISIBLE);
-                parentDbName = "Patient";
+                parentDbName = "users";
             }
         });
         loginBtn.setOnClickListener(new View.OnClickListener() {
