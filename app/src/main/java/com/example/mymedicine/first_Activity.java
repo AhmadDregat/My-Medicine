@@ -18,7 +18,7 @@ public class first_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_);
-        signout = findViewById(R.id.docButton);
+        signout = findViewById(R.id.regButton);
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

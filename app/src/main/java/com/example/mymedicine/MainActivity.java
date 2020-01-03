@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private Button doctorBtn, patientBtn;
+    private Button regBtn, loginBtn;
 
 
     @Override
@@ -16,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Buttons
-        doctorBtn = findViewById(R.id.docButton);
-        patientBtn = findViewById(R.id.patButton);
+        regBtn = findViewById(R.id.regButton);
+        loginBtn = findViewById(R.id.loginButton);
         // Clicking behaviour
-        doctorBtn.setOnClickListener(new View.OnClickListener() {
+        regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        patientBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);

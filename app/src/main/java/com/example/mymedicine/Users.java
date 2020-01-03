@@ -7,40 +7,29 @@ import java.util.Map;
 
 public class Users {
 
-    public Users()
-    { }
-
-
-    private String email, user, phone,password,permission;
+    private String email, user, phone, password, permission;
     private Map<String, Product> carts;
+    public Users() {
+    }
 
-    public Users(String mail, String user, String phone, String password,String permission) {
+    public Users(String mail, String user, String phone, String password, String permission) {
         this.email = mail;
         this.user = user;
         carts = new HashMap<>();
         this.phone = phone;
-        this.password=password;
-        this.permission="users";
+        this.password = password;
+        this.permission = permission;
 
     }
-    public void setEmail(String mail) {
-        this.email = mail;
-    }
+
     public void setpassword(String password) {
         this.password = password;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getpermission() {
         return this.permission;
     }
+
     public void permission(String permission) {
         this.permission = permission;
     }
@@ -48,15 +37,29 @@ public class Users {
     public String getEmail() {
         return this.email;
     }
+
+    public void setEmail(String mail) {
+        this.email = mail;
+    }
+
     public String getpassword() {
         return this.password;
     }
+
     public String getUser() {
         return this.user;
     }
 
+    public void setUser(String user) {
+        this.user = user;
+    }
+
     public String getPhone() {
         return this.phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Map<String, Product> getCarts() {
@@ -66,12 +69,4 @@ public class Users {
     public void addToCarts(String num, Product cart) {
         carts.put(num, cart);
     }
-
-//    public double totalPrice() {
-//        double total = 0;
-//        for (Product i : carts.values()) {
-//            total += i.getPrice();
-//        }
-//        return total;
-//    }
 }
