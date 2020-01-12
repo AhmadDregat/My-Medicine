@@ -21,12 +21,10 @@
         </activity>
         <activity android:name=".AdminCategoryActivity" />
         <activity android:name=".model.MyCart" />
-        <activity android:name=".MedicineActivity" />
         <activity android:name=".first_Activity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ResetPassword" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ResetPassword" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

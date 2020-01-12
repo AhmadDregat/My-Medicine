@@ -11,9 +11,10 @@
     <EditText
         android:id="@+id/emailText"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:autofillHints=""
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_mail"
@@ -21,14 +22,16 @@
         android:hint="email"
         android:inputType="textEmailAddress"
         android:text=""
-        android:textSize="16dp" />
+        android:textSize="16dp"
+        />
 
     <EditText
         android:id="@+id/nameText"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:autofillHints=""
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_name"
@@ -41,9 +44,10 @@
     <EditText
         android:id="@+id/passText"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_lock"
         android:ems="10"
@@ -54,9 +58,10 @@
     <EditText
         android:id="@+id/phoneText"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:autofillHints=""
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_phone"
@@ -68,31 +73,55 @@
     <Button
         android:id="@+id/regButton"
         android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="60dp"
         android:layout_marginStart="50dp"
-        android:text="Register as a patient"
-        android:textAllCaps="false" />
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/buttons"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:layout_marginRight="60dp"
+        android:textColor="@android:color/black"
+        />
 
     <TextView
-        android:id="@+id/registerAs"
+        android:id="@+id/doctor_panel_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I'm a doctor"
-        android:layout_marginStart="25dp"
+        android:text="I'm a doctor?"
+        android:layout_marginStart="240dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginTop="5dp"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:layout_marginLeft="80dp"
+        android:layout_marginRight="23dp" />
+
+    <TextView
+        android:id="@+id/Patient_panel_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="-25dp"
         android:layout_marginEnd="23dp"
-        />
+        android:layout_marginRight="23dp"
+        android:text="I'm a Patient?"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:visibility="invisible"
+         />
 
     <TextView
         android:id="@+id/signinText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:textSize="17dp"
         android:text="Already have an account ? Sign in here " />
 
 
