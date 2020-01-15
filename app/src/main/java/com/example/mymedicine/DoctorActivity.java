@@ -5,9 +5,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.mymedicine.model.MyCart;
+import com.example.mymedicine.model.UserHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -26,12 +30,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -40,13 +48,20 @@ public class DoctorActivity extends AppCompatActivity implements NavigationView.
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private FirebaseDatabase database;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef, userref;
     private FirebaseUser user;
+
+
+    private RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor);
+
+
+        userref = FirebaseDatabase.getInstance().getReference().child("users");
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Doctors");
@@ -59,9 +74,46 @@ public class DoctorActivity extends AppCompatActivity implements NavigationView.
         menuItem.setVisible(false);
         toolbar = findViewById(R.id.toolbar12);
         setActionBar(toolbar);
+
+
+        recyclerView = findViewById(R.id.recycler_menu);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
     //        menuItem.setVisible(true);
      //   drawer = findViewById(R.id.drawer_layout);
     }
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+
+        FirebaseRecyclerOptions<Users> options =
+                new FirebaseRecyclerOptions.Builder<Users>()
+                        .setQuery(userref, Users.class )
+                        .build();
+        FirebaseRecyclerAdapter<Users,UserHolder> adapter =
+                new FirebaseRecyclerAdapter<Users,UserHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull UserHolder holder, int position, @NonNull Users model) {
+                holder.userName.setText(model.getUser());
+                holder.emailuser.setText(model.getEmail());
+                holder.userphone.setText(model.getPhone());
+            }
+
+            @NonNull
+            @Override
+            public UserHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_layout, parent, false);
+                UserHolder holder = new UserHolder(view);
+                return holder;
+            }
+        };
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+    }
+
 
     public void setDataView(DatabaseReference Ref) {
         myRef.addValueEventListener(new ValueEventListener() {
@@ -93,18 +145,15 @@ public class DoctorActivity extends AppCompatActivity implements NavigationView.
                 finish();
                 break;
             case R.id.nav_admin:
-
                 startActivity(new Intent(this, AdminCategoryActivity.class));
                 finish();
                 break;
             case R.id.nav_cart:
-
                 startActivity(new Intent(this, MyCart.class));
                 finish();
                 break;
             case R.id.nav_signout:
                 auth.signOut();
-
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;

@@ -6,11 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Users {
-
+    public Users() { }
     private String email, user, phone, password, permission;
     private Map<String, Product> carts;
-    public Users() {
-    }
+
 
     public Users(String mail, String user, String phone, String password, String permission) {
         this.email = mail;
