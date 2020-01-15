@@ -126,11 +126,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 databaseRef = database.getReference(parentDbName);
                                 databaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
                                 if (isDoc) {
-                                    Intent x = new Intent(RegisterActivity.this, AdminActivity.class);
+                                    Intent x = new Intent(RegisterActivity.this, DoctorActivity.class);
                                     startActivity(x);
                                     finish();
                                 } else {
-                                    Intent x = new Intent(RegisterActivity.this, HomeActivity.class);
+                                    Intent x = new Intent(RegisterActivity.this, UserActivity.class);
                                     startActivity(x);
                                     finish();
                                 }

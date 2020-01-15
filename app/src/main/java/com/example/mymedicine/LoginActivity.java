@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
                     Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                    Intent i = new Intent(LoginActivity.this, UserActivity.class);
                     startActivity(i);
 
 
@@ -136,12 +136,12 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Welcome Doctor, you are logged in Successfully...", Toast.LENGTH_SHORT).show();
 
 
-                            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, DoctorActivity.class);
                             startActivity(intent);
                         }
                         else if(parentDbName.equals("users")){
                             Toast.makeText(LoginActivity.this, "logged in Successfully...", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                             startActivity(intent);
                         }
 
