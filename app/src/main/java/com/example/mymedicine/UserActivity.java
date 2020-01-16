@@ -80,7 +80,7 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
 
             setDataView(myRef);
             toolbar =findViewById(R.id.toolbar1);
-            setActionBar(toolbar);
+            //setActionBar(toolbar);
             drawer = findViewById(R.id.drawer_layout);
             FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
                 @Override

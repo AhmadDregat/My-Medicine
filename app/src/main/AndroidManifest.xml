@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".OverTheCounterDrugsActivity"></activity>
         <activity
             android:name=".DoctorActivity"
             android:label="@string/title_activity_doctor"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UserActivity"
             android:label="@string/title_activity_user"
@@ -28,7 +29,6 @@
         </activity>
         <activity android:name=".AdminCategoryActivity" />
         <activity android:name=".model.MyCart" />
-        <activity android:name=".first_Activity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".AdminAddNewProductActivity" />
         <activity android:name=".ResetPassword" />
