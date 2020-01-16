@@ -75,7 +75,6 @@ public class DoctorActivity extends AppCompatActivity implements NavigationView.
         toolbar = findViewById(R.id.toolbar12);
         setActionBar(toolbar);
 
-
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -100,6 +99,13 @@ public class DoctorActivity extends AppCompatActivity implements NavigationView.
                 holder.userName.setText(model.getUser());
                 holder.emailuser.setText(model.getEmail());
                 holder.userphone.setText(model.getPhone());
+                holder.addnew.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DoctorActivity.this,AdminCategoryActivity.class );
+                        startActivity(intent);
+                    }
+                });
             }
 
             @NonNull
