@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     // UI
     private EditText emailText, passwordText, nameText, phoneText;
     private Button registerBtn;
-    private TextView DoctorLink, PatientLink, signinText;
+    private TextView DoctorLink, PatientLink;
     private String singInText = "Already have an account ? Sign in here ";
     private SpannableString ss = new SpannableString(singInText);
 
@@ -52,9 +52,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         // UI
         setContentView(R.layout.activity_register);
-        signinText = findViewById(R.id.signinText);
-        signinText.setText(ss);
-        signinText.setMovementMethod(LinkMovementMethod.getInstance());
         firebaseAuth = FirebaseAuth.getInstance();
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passText);

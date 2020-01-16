@@ -29,41 +29,55 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.rey.material.widget.CheckBox;
+
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
+
     private EditText emailText, passwordText;
     private TextView restpassword;
-    Button loginBtn;
-    private TextView DoctorLink, PatientLink;
-    private String parentDbName = "users";
-    private FirebaseUser user;
+    private Button loginBtn;
+    private ProgressDialog loadingBar;
 
-    FirebaseAuth firebaseAuth;
-    private  DatabaseReference RootRef;
+    private String parentDbName = "users";
+
+    private  Users usersData;
+
+   // private FirebaseUser user;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference RootRef;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    //    private Users user;
+
+    // private Users user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passText);
         loginBtn = findViewById(R.id.loginButton);
         firebaseAuth = FirebaseAuth.getInstance();
         restpassword=findViewById(R.id.forget_password_link);
-        DoctorLink = (TextView) findViewById(R.id.doctor_panel_link);
-        PatientLink = (TextView) findViewById(R.id.Patient_panel_link);
         RootRef= FirebaseDatabase.getInstance().getReference();
+        loadingBar = new ProgressDialog(this);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = LoginActivity.this.firebaseAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
-                    Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this, UserActivity.class);
-                    startActivity(i);
-
+                    if(usersData.getpermission() == "users"){
+                        Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(LoginActivity.this, UserActivity.class);
+                        startActivity(i);
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this, "your logged in ", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(LoginActivity.this, DoctorActivity.class);
+                        startActivity(i);
+                    }
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Please login  ", Toast.LENGTH_SHORT).show();
@@ -72,25 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         };
-        DoctorLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginBtn.setText("Login Doctor");
-                DoctorLink.setVisibility(View.INVISIBLE);
-                PatientLink.setVisibility(View.VISIBLE);
-                parentDbName = "Doctors";
-            }
-        });
 
-        PatientLink.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                loginBtn.setText("Login Patient");
-                DoctorLink.setVisibility(View.VISIBLE);
-                PatientLink.setVisibility(View.INVISIBLE);
-                parentDbName = "users";
-            }
-        });
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,19 +119,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     private void AllowAccessToAccount(final String email, final String password) {
+        RootRef= FirebaseDatabase.getInstance().getReference("users");
+
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                   dataSnapshot.child(user.getUid()).getValue(Users.class);
+                   dataSnapshot.child(firebaseAuth.getCurrentUser().getUid()).getValue(Users.class);
                 if(dataSnapshot.child(parentDbName).child(email).exists()){
-                    Users usersData = dataSnapshot.child(parentDbName).child(email).getValue(Users.class);
+                     usersData = dataSnapshot.child(parentDbName).child(email).getValue(Users.class);
 
                     if(usersData.getEmail().equals(email)){
                         if (parentDbName.equals("Doctors")){
                             Toast.makeText(LoginActivity.this, "Welcome Doctor, you are logged in Successfully...", Toast.LENGTH_SHORT).show();
-
-
                             Intent intent = new Intent(LoginActivity.this, DoctorActivity.class);
                             startActivity(intent);
                         }
@@ -144,8 +141,6 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                             startActivity(intent);
                         }
-
-
                         else{
                             Toast.makeText(LoginActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
                         }
@@ -153,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "Account with this " + email + " number do not exists.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Account with this " + email + " email do not exists.", Toast.LENGTH_SHORT).show();
                 }
             }
 

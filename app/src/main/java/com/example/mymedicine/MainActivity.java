@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
-    private Button regBtn, loginBtn;
+    private Button regBtn, loginBtn, medBtn;
     private ProgressDialog loadingBar;
 
     @Override
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         // Buttons
         regBtn = (Button) findViewById(R.id.regButton);
         loginBtn = (Button) findViewById(R.id.loginButton);
+        medBtn = (Button) findViewById(R.id.OverTheCounterDrugs);
         loadingBar = new ProgressDialog(this);
 
         Paper.init(this);
@@ -49,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        medBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OverTheCounterDrugsActivity.class);
                 startActivity(intent);
             }
         });
