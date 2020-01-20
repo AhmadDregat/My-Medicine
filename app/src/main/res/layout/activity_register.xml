@@ -12,9 +12,9 @@
         android:id="@+id/emailText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="130dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="130dp"
         android:autofillHints=""
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_mail"
@@ -22,21 +22,20 @@
         android:hint="email"
         android:inputType="textEmailAddress"
         android:text=""
-        android:textSize="16dp"
-        />
+        android:textSize="16dp" />
 
     <EditText
         android:id="@+id/nameText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
         android:autofillHints=""
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_name"
         android:ems="10"
-        android:hint="username"
+        android:hint="Full name"
         android:inputType="textPersonName"
         android:text=""
         android:textSize="16dp" />
@@ -45,9 +44,9 @@
         android:id="@+id/passText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_lock"
         android:ems="10"
@@ -56,61 +55,44 @@
         android:textSize="16dp" />
 
     <EditText
-        android:id="@+id/phoneText"
+        android:id="@+id/license_id"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:autofillHints=""
+        android:layout_marginTop="30dp"
         android:background="#11000000"
-        android:drawableLeft="@drawable/ic_action_phone"
+        android:drawableLeft="@drawable/ic_action_lock"
         android:ems="10"
-        android:hint="phone"
-        android:inputType="phone"
+        android:editable="false"
+        android:hint="Doctor ID"
+        android:inputType="textPhonetic"
         android:textSize="16dp" />
+
+
+    <Switch
+        android:id="@+id/isDoc"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:checked="false"
+        tools:checked="false" />
 
     <Button
         android:id="@+id/regButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="60dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:text="Register"
-        android:textAllCaps="false"
-        android:textSize="20sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
+        android:text="Register as a patient"
+        android:textAllCaps="false"
         android:textColor="@android:color/black"
-        />
+        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/doctor_panel_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I'm a doctor?"
-        android:layout_marginStart="240dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginTop="5dp"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="23dp" />
-
-    <TextView
-        android:id="@+id/Patient_panel_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="-25dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginRight="23dp"
-        android:text="I'm a Patient?"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        />
 
 </LinearLayout>

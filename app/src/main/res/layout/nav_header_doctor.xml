@@ -18,26 +18,23 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/profile"
-        android:layout_gravity="center"
         app:civ_border_width="2dp"
         app:civ_border_color="#FF000000"
         />
 
     <TextView
-        android:id="@+id/username_nav"
+        android:id="@+id/doctorname_nav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:hint="User Name"
         android:textColor="#ffffff"
-        android:layout_gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/email_nav"
+        android:id="@+id/emaildoc_nav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
-        android:hint="info@test.com"
-        android:layout_gravity="center"/>
+        android:hint="info@test.com" />
 </LinearLayout>

@@ -1,6 +1,4 @@
-package com.example.mymedicine.model;
-
-import com.example.mymedicine.Users;
+package com.example.mymedicine.data_obj;
 
 public class Prevalent
 {

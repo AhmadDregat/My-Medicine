@@ -37,4 +37,11 @@
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
         android:hint="info@test.com" />
+
+    <TextView
+        android:id="@+id/doc_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:hint="Doctor name" />
 </LinearLayout>
