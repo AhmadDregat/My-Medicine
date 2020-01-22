@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/mer_name"
-            android:layout_width="318dp"
+            android:layout_width="267dp"
             android:layout_height="wrap_content"
             android:hint="Mersham Name"
             android:textAlignment="textStart"
@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/mer_price"
-            android:layout_width="318dp"
+            android:layout_width="265dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:hint="Mersham price"
@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/mer_freq"
-            android:layout_width="318dp"
+            android:layout_width="267dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Mersham freq"
@@ -44,12 +44,16 @@
             android:textSize="15dp" />
 
         <ImageView
-            android:id="@+id/mer_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/curr_pic_med"
+            android:layout_width="85dp"
+            android:layout_height="71dp"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginStart="290dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
             app:srcCompat="@drawable/ic_menu_camera" />
 
     </RelativeLayout>

@@ -9,17 +9,20 @@ public class Mersham implements Serializable {
     private String doc;
     private String price;
     private String freq_of_taking;
+    private String pid;
+    private String img;
 
     public Mersham() {
     }
 
-    public Mersham(String med, String pat, String doc, String price, String freq_of_taking) {
+    public Mersham(String med, String pat, String doc, String price, String freq_of_taking, String pid, String img) {
         this.med = med;
         this.pat = pat;
         this.doc = doc;
         this.price = price;
         this.freq_of_taking = freq_of_taking;
-
+        this.pid = pid;
+        this.img = img;
     }
 
     @Override
@@ -28,8 +31,26 @@ public class Mersham implements Serializable {
                 "med='" + med + '\'' +
                 ", pat='" + pat + '\'' +
                 ", doc='" + doc + '\'' +
-                ", freq_of_taking=" + freq_of_taking +
+                ", price='" + price + '\'' +
+                ", freq_of_taking='" + freq_of_taking + '\'' +
+                ", pid='" + pid + '\'' +
                 '}';
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public String getPrice() {

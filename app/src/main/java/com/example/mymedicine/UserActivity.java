@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -17,6 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.mymedicine.data_obj.Medicine;
 import com.example.mymedicine.data_obj.Mersham;
 import com.example.mymedicine.data_obj.Users;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -30,6 +33,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
@@ -38,10 +44,10 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     //firebase
     private FirebaseAuth auth;
-    private DatabaseReference doctor_db, user_db;
+    private DatabaseReference doctor_db, user_db,med_db;
     private FirebaseUser current_user;
     private String current_uid;
-
+    private Medicine current_med_obj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +60,8 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
 
         user_db = FirebaseDatabase.getInstance().getReference().child("users");
         doctor_db = FirebaseDatabase.getInstance().getReference("Doctors");
+        med_db = FirebaseDatabase.getInstance().getReference("Medicines");
+
 
         setDataView(user_db);
 
@@ -62,7 +70,6 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
         View header = navigationView.getHeaderView(0);
 
         toolbar = findViewById(R.id.toolbar1);
-
         recyclerView = findViewById(R.id.recycler_menu_user);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -83,6 +90,7 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
                         holder.merName.setText(model.getMed());
                         holder.merFreq.setText(model.getFreq_of_taking());
                         holder.merPrice.setText(model.getPrice());
+                        Glide.with(getApplicationContext()).load(model.getImg()).into(holder.img);
                     }
 
                     @NonNull

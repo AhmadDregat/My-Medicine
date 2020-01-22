@@ -103,7 +103,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 frequencytaking = Frequency_of_taking.getText().toString().trim();
 
-                Mersham mersham = new Mersham(med.getName(), user_sent.getUser(), current_doctor_object.getDoctor(), med.getPrice(), frequencytaking);
+                Mersham mersham = new Mersham(med.getName(), user_sent.getUser(), current_doctor_object.getDoctor(), med.getPrice(), frequencytaking, med.getPid(),med.getImage());
 
                 final DatabaseReference doc_ref_push = user_db.child(current_user_uid).child("mymeds");
 
