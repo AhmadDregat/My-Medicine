@@ -1,19 +1,31 @@
 package com.example.mymedicine.data_obj;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.Serializable;
 
-public class Medicine {
-    private String company, name, manufacturing_date, price, pid;
-    private URL pic;
+public class Medicine implements Serializable {
+    private String company, name, man_date, price, pid, image;
 
-    public Medicine(String company, String name, String manufacturing_date, String price, String pic_link, String pid) throws MalformedURLException {
+    public Medicine(){}
+
+    public Medicine(String company, String name, String man_date, String price, String image, String pid){
         this.company = company;
         this.name = name;
-        this.manufacturing_date = manufacturing_date;
+        this.man_date = man_date;
         this.price = price;
         this.pid = pid;
-        this.pic = new URL(pic_link);
+        this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Medicine{" +
+                "company='" + company + '\'' +
+                ", name='" + name + '\'' +
+                ", man_date='" + man_date + '\'' +
+                ", price='" + price + '\'' +
+                ", pid='" + pid + '\'' +
+                ", image='" + image + '\'' +
+                '}';
     }
 
     public String getCompany() {
@@ -24,14 +36,6 @@ public class Medicine {
         this.company = company;
     }
 
-    public String getPid() {
-        return pid;
-    }
-
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
     public String getName() {
         return name;
     }
@@ -40,20 +44,12 @@ public class Medicine {
         this.name = name;
     }
 
-    public URL getPic() {
-        return pic;
+    public String getMan_date() {
+        return man_date;
     }
 
-    public void setPic(URL pic) {
-        this.pic = pic;
-    }
-
-    public String getManufacturing_date() {
-        return manufacturing_date;
-    }
-
-    public void setManufacturing_date(String manufacturing_date) {
-        this.manufacturing_date = manufacturing_date;
+    public void setMan_date(String man_date) {
+        this.man_date = man_date;
     }
 
     public String getPrice() {
@@ -64,4 +60,19 @@ public class Medicine {
         this.price = price;
     }
 
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

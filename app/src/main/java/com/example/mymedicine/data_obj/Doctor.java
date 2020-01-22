@@ -1,12 +1,13 @@
 package com.example.mymedicine.data_obj;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Doctor {
+public class Doctor implements Serializable {
 
     public String email, doctor, license_id;
-    public Map<String, String> mypats = new HashMap<>();
+    public Map<String, Users> mypats = new HashMap<>();
 
     public Doctor() {
     }
@@ -42,11 +43,11 @@ public class Doctor {
         this.license_id = license_id;
     }
 
-    public Map<String, String> getMypats() {
+    public Map<String, Users> getMypats() {
         return mypats;
     }
 
-    public void setMypats(Map<String, String> mypats) {
+    public void setMypats(Map<String, Users> mypats) {
         this.mypats = mypats;
     }
 

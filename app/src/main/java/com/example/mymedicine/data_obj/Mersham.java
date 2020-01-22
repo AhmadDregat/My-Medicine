@@ -1,26 +1,31 @@
 package com.example.mymedicine.data_obj;
 
-public class Mersham {
+import java.io.Serializable;
 
-    private String name_of_med;
+public class Mersham implements Serializable {
+
+    private Medicine med;
     private Users pat;
     private Doctor doc;
     private int freq_of_taking;
 
-    public Mersham(String name_of_med, Users pat, Doctor doc, int freq_of_taking) {
-        this.name_of_med = name_of_med;
+    public Mersham() {
+    }
+
+    public Mersham(Medicine med, Users pat, Doctor doc, int freq_of_taking) {
+        this.med = med;
         this.pat = pat;
         this.doc = doc;
         this.freq_of_taking = freq_of_taking;
 
     }
 
-    public String getName_of_med() {
-        return name_of_med;
+    public Medicine getMed() {
+        return med;
     }
 
-    public void setName_of_med(String name_of_med) {
-        this.name_of_med = name_of_med;
+    public void setMed(Medicine med) {
+        this.med = med;
     }
 
     public Users getPat() {
@@ -31,6 +36,14 @@ public class Mersham {
         this.pat = pat;
     }
 
+    public Doctor getDoc() {
+        return doc;
+    }
+
+    public void setDoc(Doctor doc) {
+        this.doc = doc;
+    }
+
     public int getFreq_of_taking() {
         return freq_of_taking;
     }
@@ -39,11 +52,13 @@ public class Mersham {
         this.freq_of_taking = freq_of_taking;
     }
 
-    public Doctor getDoc() {
-        return doc;
-    }
-
-    public void setDoc(Doctor doc) {
-        this.doc = doc;
+    @Override
+    public String toString() {
+        return "Mersham{" +
+                "med=" + med +
+                ", pat=" + pat +
+                ", doc=" + doc +
+                ", freq_of_taking=" + freq_of_taking +
+                '}';
     }
 }

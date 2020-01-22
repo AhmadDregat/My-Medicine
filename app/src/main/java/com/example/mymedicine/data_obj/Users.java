@@ -1,18 +1,48 @@
 package com.example.mymedicine.data_obj;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Users {
+public class Users implements Serializable {
 
     private String email, user;
     private String mydoc = null;
     private Map<String, Medicine> mymeds;
-    public Users(){}
+
+    public Users() {
+    }
+
     public Users(String mail, String user) {
         this.email = mail;
         this.user = user;
         mymeds = new HashMap<>();
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "email='" + email + '\'' +
+                ", user='" + user + '\'' +
+                ", mydoc='" + mydoc + '\'' +
+                ", mymeds=" + mymeds +
+                '}';
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getMydoc() {
@@ -23,28 +53,11 @@ public class Users {
         this.mydoc = mydoc;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String mail) {
-        this.email = mail;
-    }
-
-    public String getUser() {
-        return this.user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public Map<String, Medicine> getCarts() {
+    public Map<String, Medicine> getMymeds() {
         return mymeds;
     }
 
-    public void addToCarts(String num, Medicine cart) {
-        mymeds.put(num, cart);
+    public void setMymeds(Map<String, Medicine> mymeds) {
+        this.mymeds = mymeds;
     }
-
 }

@@ -1,164 +1,121 @@
 package com.example.mymedicine;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.example.mymedicine.data_obj.Doctor;
 import com.example.mymedicine.data_obj.Medicine;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.example.mymedicine.data_obj.Mersham;
+import com.example.mymedicine.data_obj.Users;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class AdminAddNewProductActivity extends AppCompatActivity {
 
     private Medicine med;
+    private Users user_sent;
+    private Doctor current_doctor_object;
+    private String current_doctor_uid;
+    private String current_user_uid;
+
     private Button AddNewProductButton;
     private ImageView InputProductImage;
-    private EditText product_name, product_company, manufacturing_date, pro_price, Frequency_of_taking;
-    private Uri ImageUri;
-    private String productRandomKey, downloadImageUrl;
-    private StorageReference ProductImagesRef;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private EditText Frequency_of_taking;
 
-    private DatabaseReference ProductsRef;
+    private FirebaseAuth auth;
+    private DatabaseReference doctor_db, user_db;
+    private FirebaseUser current_user;
+
+
+    private int frequencytaking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_new_product);
-        gat = getIntent().getExtras().get("category").toString();
-        ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Medicines");
+
+        auth = FirebaseAuth.getInstance();
+        current_user = auth.getCurrentUser();
+        current_doctor_uid = current_user.getUid();
+
+        user_db = FirebaseDatabase.getInstance().getReference().child("users");
+        doctor_db = FirebaseDatabase.getInstance().getReference("Doctors");
+
+        med = (Medicine) getIntent().getSerializableExtra("curr_med");
+        System.out.println(med);
+        user_sent = (Users) getIntent().getSerializableExtra("curr_user");
+        System.out.println(user_sent);
+
+
+        doctor_db.child(current_doctor_uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                current_doctor_object = dataSnapshot.getValue(Doctor.class);
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+
+        });
+
+        user_db.orderByChild("user").equalTo(user_sent.getUser()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Map<String, Users> temp_map = (HashMap<String, Users>) dataSnapshot.getValue();
+                Map.Entry<String,Users> entry = temp_map.entrySet().iterator().next();
+                current_user_uid = entry.getKey();
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+
+        });
+
 
 
         AddNewProductButton = findViewById(R.id.add_new_product);
-        product_name = findViewById(R.id.product_name);
-        product_company = findViewById(R.id.product_company);
-        manufacturing_date = findViewById(R.id.manufacturing_date);
-        pro_price = findViewById(R.id.price);
         Frequency_of_taking = findViewById(R.id.Frequency_of);
-        InputProductImage = findViewById(R.id.select_product_image);
+        InputProductImage = findViewById(R.id.prod_img);
 
-        InputProductImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OpenGallery();
+        Glide.with(getApplicationContext()).load(med.getImage()).into(InputProductImage);
 
-            }
-        });
         AddNewProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /// name, company, date_manu, price, frequencytaking;
-                name = product_name.getText().toString().trim();
-                company = product_company.getText().toString().trim();
-                date_manu = manufacturing_date.getText().toString().trim();
-                price = pro_price.getText().toString().trim();
-                frequencytaking = Frequency_of_taking.getText().toString().trim();
-                med = new Medicine(company, name, date_manu, price, frequencytaking);
-                if (ImageUri == null) {
-                    //   Toast.makeText(this, "Product image is mandatory...", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(name)) {
-                    //   Toast.makeText(this, "Please write product name ...", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(company)) {
-                    //   Toast.makeText(this, "Please write product company...", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(date_manu)) {
-                    //    Toast.makeText(this, "Please write product date_manu...", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(price)) {
-                    // Toast.makeText(this, "Please write product price...", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(frequencytaking)) {
-                    // Toast.makeText(this, "Please write product frequency of taking...", Toast.LENGTH_SHORT).show();
-                } else {
-                    productRandomKey = name;
-                    final StorageReference filepath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
-                    final UploadTask uploadtask = filepath.putFile(ImageUri);
-                    uploadtask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            String message = e.toString();
-                            Toast.makeText(AdminAddNewProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(AdminAddNewProductActivity.this, "Product Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
-                            Task<Uri> urlTask = uploadtask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                                @Override
-                                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                                    if (!task.isSuccessful()) {
-                                        throw task.getException();
-                                    }
+                frequencytaking = Integer.parseInt(Frequency_of_taking.getText().toString().trim());
 
-                                    downloadImageUrl = filepath.getDownloadUrl().toString();
-                                    return filepath.getDownloadUrl();
-                                }
-                            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Uri> task) {
-                                    if (task.isSuccessful()) {
-                                        downloadImageUrl = task.getResult().toString();
+                Mersham mersham = new Mersham(med, user_sent, current_doctor_object, frequencytaking);
 
-                                        Toast.makeText(AdminAddNewProductActivity.this, "got the Product image Url Successfully...", Toast.LENGTH_SHORT).show();
+                final DatabaseReference doc_ref_push = user_db.child(current_user_uid).child("mymeds");
 
-                                        SaveProductInfoToDatabase();
-                                    }
-                                }
-                            });
-                        }
-                    });
-                }
+                final Map<String, Object> mymeds = new HashMap<>();
+                mymeds.put(med.getPid(), mersham);
+                doc_ref_push.updateChildren(mymeds);
+
+                Intent x = new Intent(AdminAddNewProductActivity.this, DoctorActivity.class);
+                startActivity(x);
+                finish();
             }
         });
-
     }
-
-    private void SaveProductInfoToDatabase() {/// name, company, Price, date_manu, frequencytaking;
-        HashMap<String, Object> medmap = new HashMap<>();
-        medmap.put("pid", productRandomKey);
-        medmap.put("name", name);
-        medmap.put("company", company);
-        medmap.put("price ", price);
-        medmap.put("category", gat);
-        medmap.put("image", downloadImageUrl);
-        medmap.put("date manu", date_manu);
-        //  ProductsRef = database.getReference();
-        ProductsRef.child(productRandomKey).updateChildren(medmap);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null) {
-            ImageUri = data.getData();
-            InputProductImage.setImageURI(ImageUri);
-        }
-    }
-
-    private void OpenGallery() {
-        Intent galleryintent = new Intent();
-        galleryintent.setAction(Intent.ACTION_GET_CONTENT);
-        galleryintent.setType("image/*");
-        startActivityForResult(galleryintent, GalleryPick);
-
-    }
-
 }

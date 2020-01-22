@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mymedicine.data_obj.Doctor;
+import com.example.mymedicine.data_obj.Users;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +32,7 @@ public class SelectDoctor extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser current_user;
+    private Users current_user_object;
     private String current_uid;
     private String current_name;
 
@@ -80,8 +82,8 @@ public class SelectDoctor extends AppCompatActivity {
                                             user_database.child(current_uid).addValueEventListener(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                                    current_name = dataSnapshot.child("user").getValue(String.class);
-                                                    pat_map.put(current_uid, current_name);
+                                                    current_user_object = dataSnapshot.getValue(Users.class);
+                                                    pat_map.put(current_uid, current_user_object);
                                                     doc_ref_push.updateChildren(pat_map);
                                                 }
 
@@ -89,8 +91,6 @@ public class SelectDoctor extends AppCompatActivity {
                                                 public void onCancelled(DatabaseError databaseError) {
                                                 }
                                             });
-
-
                                         }
                                     }
 
@@ -100,7 +100,6 @@ public class SelectDoctor extends AppCompatActivity {
                                     }
 
                                 });
-
                                 user_database.child(current_user.getUid()).child("mydoc").setValue(model.getDoctor());
                                 Intent intent = new Intent(SelectDoctor.this, UserActivity.class);
                                 startActivity(intent);

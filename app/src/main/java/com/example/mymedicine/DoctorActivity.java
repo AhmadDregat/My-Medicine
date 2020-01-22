@@ -30,20 +30,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Map;
-
 public class DoctorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
+
     private Toolbar toolbar;
     private DrawerLayout drawer;
 
     private FirebaseAuth auth;
     private DatabaseReference doctor_db, user_db;
     private FirebaseUser current_user;
-
     private String current_uid;
-    private String current_name;
 
 
     @Override
@@ -79,34 +76,20 @@ public class DoctorActivity extends AppCompatActivity implements NavigationView.
         super.onStart();
         FirebaseRecyclerOptions<Users> options =
                 new FirebaseRecyclerOptions.Builder<Users>()
-                        .setQuery(user_db, Users.class)
+                        .setQuery(doctor_db.child(current_uid).child("mypats"), Users.class)
                         .build();
         FirebaseRecyclerAdapter<Users, UserHandler> adapter =
                 new FirebaseRecyclerAdapter<Users, UserHandler>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull final UserHandler holder, int position, @NonNull final Users model) {
-                        doctor_db.child(current_uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                        holder.userName.setText(model.getUser());
+                        holder.emailuser.setText(model.getEmail());
+                        holder.addnew.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                Doctor doc = dataSnapshot.getValue(Doctor.class);
-                                final Map<String, String> mypats = doc.getMypats();
-                                for (String val : mypats.values()) {
-                                    if (model.getUser().equals(val)) {
-                                        holder.userName.setText(model.getUser());
-                                        holder.emailuser.setText(model.getEmail());
-                                        holder.addnew.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Intent intent = new Intent(DoctorActivity.this, AdminAddNewProductActivity.class);
-                                                startActivity(intent);
-                                            }
-                                        });
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
+                            public void onClick(View v) {
+                                Intent intent = new Intent(DoctorActivity.this, AllMeds.class);
+                                intent.putExtra("user",model);
+                                startActivity(intent);
                             }
                         });
                     }
