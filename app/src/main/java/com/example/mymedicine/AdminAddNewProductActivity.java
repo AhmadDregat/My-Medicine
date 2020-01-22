@@ -43,7 +43,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     private FirebaseUser current_user;
 
 
-    private int frequencytaking;
+    private String frequencytaking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +101,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         AddNewProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frequencytaking = Integer.parseInt(Frequency_of_taking.getText().toString().trim());
+                frequencytaking = Frequency_of_taking.getText().toString().trim();
 
                 Mersham mersham = new Mersham(med.getName(), user_sent.getUser(), current_doctor_object.getDoctor(), med.getPrice(), frequencytaking);
 

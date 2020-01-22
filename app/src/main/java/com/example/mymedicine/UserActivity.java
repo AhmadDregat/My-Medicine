@@ -62,14 +62,11 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
         View header = navigationView.getHeaderView(0);
 
         toolbar = findViewById(R.id.toolbar1);
-        setActionBar(toolbar);
 
-        recyclerView = findViewById(R.id.recycler_menu);
+        recyclerView = findViewById(R.id.recycler_menu_user);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        drawer = findViewById(R.id.drawer_layout);
     }
 
     @Override
@@ -86,21 +83,14 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
                         System.out.println(model);
                         holder.merName.setText(model.getMed());
                         holder.merFreq.setText(model.getFreq_of_taking());
-                        holder.merPrice.setText(model.getFreq_of_taking());
-//                        holder.selectedMerName.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                Intent intent = new Intent(DoctorActivity.this, AllMeds.class);
-//                                intent.putExtra("user",model);
-//                                startActivity(intent);
-//                            }
-//                        });
+                        holder.merPrice.setText(model.getPrice());
+
                     }
 
                     @NonNull
                     @Override
                     public MershamHandler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.users_layout, parent, false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mesham_layout, parent, false);
                         MershamHandler holder = new MershamHandler(view);
                         return holder;
                     }
@@ -127,7 +117,6 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 break;
         }
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

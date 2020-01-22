@@ -63,7 +63,6 @@ public class DoctorActivity extends AppCompatActivity implements NavigationView.
         View header = navigationView.getHeaderView(0);
 
         toolbar = findViewById(R.id.toolbar12);
-        setActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);

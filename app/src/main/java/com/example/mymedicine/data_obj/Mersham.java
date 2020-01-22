@@ -8,12 +8,12 @@ public class Mersham implements Serializable {
     private String pat;
     private String doc;
     private String price;
-    private int freq_of_taking;
+    private String freq_of_taking;
 
     public Mersham() {
     }
 
-    public Mersham(String med, String pat, String doc, String price, int freq_of_taking) {
+    public Mersham(String med, String pat, String doc, String price, String freq_of_taking) {
         this.med = med;
         this.pat = pat;
         this.doc = doc;
@@ -64,11 +64,11 @@ public class Mersham implements Serializable {
         this.doc = doc;
     }
 
-    public int getFreq_of_taking() {
+    public String getFreq_of_taking() {
         return freq_of_taking;
     }
 
-    public void setFreq_of_taking(int freq_of_taking) {
+    public void setFreq_of_taking(String freq_of_taking) {
         this.freq_of_taking = freq_of_taking;
     }
 }
