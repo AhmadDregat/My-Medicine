@@ -43,6 +43,15 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="15dp" />
 
+        <ImageView
+            android:id="@+id/mer_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="290dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/ic_menu_camera" />
+
     </RelativeLayout>
     >
 </androidx.cardview.widget.CardView>

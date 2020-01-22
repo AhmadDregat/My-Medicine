@@ -16,6 +16,7 @@ public class MershamHandler extends RecyclerView.ViewHolder implements View.OnCl
         System.out.println(merName);
         merPrice = itemView.findViewById(R.id.mer_price);
         merFreq = itemView.findViewById(R.id.mer_freq);
+
     }
 
     public void setItemClickListner(ItemClickListner listner) {
