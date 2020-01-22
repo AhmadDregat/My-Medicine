@@ -83,10 +83,10 @@ public class UserActivity extends AppCompatActivity implements NavigationView.On
                 new FirebaseRecyclerAdapter<Mersham, MershamHandler>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull final MershamHandler holder, int position, @NonNull final Mersham model) {
-                        System.out.println(model);
-                        holder.merName.setText(model.getMed().getName());
+                        System.out.println(model.getMed());
+                        holder.merName.setText(model.getMed());
                         holder.merFreq.setText(model.getFreq_of_taking());
-                        holder.merPrice.setText(model.getMed().getPrice());
+                        holder.merPrice.setText(model.getFreq_of_taking());
 //                        holder.selectedMerName.setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View v) {

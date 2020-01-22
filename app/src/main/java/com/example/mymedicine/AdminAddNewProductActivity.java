@@ -80,7 +80,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Map<String, Users> temp_map = (HashMap<String, Users>) dataSnapshot.getValue();
-                Map.Entry<String,Users> entry = temp_map.entrySet().iterator().next();
+                Map.Entry<String, Users> entry = temp_map.entrySet().iterator().next();
                 current_user_uid = entry.getKey();
             }
 
@@ -90,7 +90,6 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
             }
 
         });
-
 
 
         AddNewProductButton = findViewById(R.id.add_new_product);
@@ -104,7 +103,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 frequencytaking = Integer.parseInt(Frequency_of_taking.getText().toString().trim());
 
-                Mersham mersham = new Mersham(med, user_sent, current_doctor_object, frequencytaking);
+                Mersham mersham = new Mersham(med.getName(), user_sent.getUser(), current_doctor_object.getDoctor(), med.getPrice(), frequencytaking);
 
                 final DatabaseReference doc_ref_push = user_db.child(current_user_uid).child("mymeds");
 

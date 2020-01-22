@@ -4,43 +4,63 @@ import java.io.Serializable;
 
 public class Mersham implements Serializable {
 
-    private Medicine med;
-    private Users pat;
-    private Doctor doc;
+    private String med;
+    private String pat;
+    private String doc;
+    private String price;
     private int freq_of_taking;
 
     public Mersham() {
     }
 
-    public Mersham(Medicine med, Users pat, Doctor doc, int freq_of_taking) {
+    public Mersham(String med, String pat, String doc, String price, int freq_of_taking) {
         this.med = med;
         this.pat = pat;
         this.doc = doc;
+        this.price = price;
         this.freq_of_taking = freq_of_taking;
 
     }
 
-    public Medicine getMed() {
+    @Override
+    public String toString() {
+        return "Mersham{" +
+                "med='" + med + '\'' +
+                ", pat='" + pat + '\'' +
+                ", doc='" + doc + '\'' +
+                ", freq_of_taking=" + freq_of_taking +
+                '}';
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getMed() {
         return med;
     }
 
-    public void setMed(Medicine med) {
+    public void setMed(String med) {
         this.med = med;
     }
 
-    public Users getPat() {
+    public String getPat() {
         return pat;
     }
 
-    public void setPat(Users pat) {
+    public void setPat(String pat) {
         this.pat = pat;
     }
 
-    public Doctor getDoc() {
+    public String getDoc() {
         return doc;
     }
 
-    public void setDoc(Doctor doc) {
+    public void setDoc(String doc) {
         this.doc = doc;
     }
 
@@ -50,15 +70,5 @@ public class Mersham implements Serializable {
 
     public void setFreq_of_taking(int freq_of_taking) {
         this.freq_of_taking = freq_of_taking;
-    }
-
-    @Override
-    public String toString() {
-        return "Mersham{" +
-                "med=" + med +
-                ", pat=" + pat +
-                ", doc=" + doc +
-                ", freq_of_taking=" + freq_of_taking +
-                '}';
     }
 }
