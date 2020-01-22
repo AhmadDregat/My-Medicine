@@ -89,17 +89,20 @@ public class DoctorActivity extends AppCompatActivity implements NavigationView.
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 Doctor doc = dataSnapshot.getValue(Doctor.class);
-                                Map<String, String> mypats = doc.getMypats();
-                                // TODO
-                                holder.userName.setText(model.getUser());
-                                holder.emailuser.setText(model.getEmail());
-                                holder.addnew.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(DoctorActivity.this, AdminCategoryActivity.class);
-                                        startActivity(intent);
+                                final Map<String, String> mypats = doc.getMypats();
+                                for (String val : mypats.values()) {
+                                    if (model.getUser().equals(val)) {
+                                        holder.userName.setText(model.getUser());
+                                        holder.emailuser.setText(model.getEmail());
+                                        holder.addnew.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent intent = new Intent(DoctorActivity.this, AdminAddNewProductActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        });
                                     }
-                                });
+                                }
                             }
 
                             @Override
@@ -131,7 +134,7 @@ public class DoctorActivity extends AppCompatActivity implements NavigationView.
                 View header = navigationView.getHeaderView(0);
 
                 TextView text = header.findViewById(R.id.doctorname_nav);
-                text.setText(current_user_object.getName());
+                text.setText(current_user_object.getDoctor());
                 text.setTextColor(Color.WHITE);
 
                 TextView text2 = header.findViewById(R.id.emaildoc_nav);

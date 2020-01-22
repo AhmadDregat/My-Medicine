@@ -29,8 +29,6 @@ import java.util.HashMap;
 
 public class AdminAddNewProductActivity extends AppCompatActivity {
 
-    private static final int GalleryPick = 1;
-    private String name, company, Price, date_manu, price, frequencytaking, gat;
     private Medicine med;
     private Button AddNewProductButton;
     private ImageView InputProductImage;
@@ -46,89 +44,89 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_new_product);
-//        gat = getIntent().getExtras().get("category").toString();
-//        ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-//        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Medicines");
-//
-//
-//        AddNewProductButton = findViewById(R.id.add_new_product);
-//        product_name = findViewById(R.id.product_name);
-//        product_company = findViewById(R.id.product_company);
-//        manufacturing_date = findViewById(R.id.manufacturing_date);
-//        pro_price = findViewById(R.id.price);
-//        Frequency_of_taking = findViewById(R.id.Frequency_of);
-//        InputProductImage = findViewById(R.id.select_product_image);
-//
-//        InputProductImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                OpenGallery();
-//
-//            }
-//        });
-//        AddNewProductButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                /// name, company, date_manu, price, frequencytaking;
-//                name = product_name.getText().toString().trim();
-//                company = product_company.getText().toString().trim();
-//                date_manu = manufacturing_date.getText().toString().trim();
-//                price = pro_price.getText().toString().trim();
-//                frequencytaking = Frequency_of_taking.getText().toString().trim();
-//                med = new Medicine(company, name, date_manu, price, frequencytaking);
-//                if (ImageUri == null) {
-//                    //   Toast.makeText(this, "Product image is mandatory...", Toast.LENGTH_SHORT).show();
-//                } else if (TextUtils.isEmpty(name)) {
-//                    //   Toast.makeText(this, "Please write product name ...", Toast.LENGTH_SHORT).show();
-//                } else if (TextUtils.isEmpty(company)) {
-//                    //   Toast.makeText(this, "Please write product company...", Toast.LENGTH_SHORT).show();
-//                } else if (TextUtils.isEmpty(date_manu)) {
-//                    //    Toast.makeText(this, "Please write product date_manu...", Toast.LENGTH_SHORT).show();
-//                } else if (TextUtils.isEmpty(price)) {
-//                    // Toast.makeText(this, "Please write product price...", Toast.LENGTH_SHORT).show();
-//                } else if (TextUtils.isEmpty(frequencytaking)) {
-//                    // Toast.makeText(this, "Please write product frequency of taking...", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    productRandomKey = name;
-//                    final StorageReference filepath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
-//                    final UploadTask uploadtask = filepath.putFile(ImageUri);
-//                    uploadtask.addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            String message = e.toString();
-//                            Toast.makeText(AdminAddNewProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
-//                        }
-//                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                            Toast.makeText(AdminAddNewProductActivity.this, "Product Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
-//                            Task<Uri> urlTask = uploadtask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-//                                @Override
-//                                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-//                                    if (!task.isSuccessful()) {
-//                                        throw task.getException();
-//                                    }
-//
-//                                    downloadImageUrl = filepath.getDownloadUrl().toString();
-//                                    return filepath.getDownloadUrl();
-//                                }
-//                            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Uri> task) {
-//                                    if (task.isSuccessful()) {
-//                                        downloadImageUrl = task.getResult().toString();
-//
-//                                        Toast.makeText(AdminAddNewProductActivity.this, "got the Product image Url Successfully...", Toast.LENGTH_SHORT).show();
-//
-//                                        SaveProductInfoToDatabase();
-//                                    }
-//                                }
-//                            });
-//                        }
-//                    });
-//                }
-//            }
-//        });
+        gat = getIntent().getExtras().get("category").toString();
+        ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Medicines");
+
+
+        AddNewProductButton = findViewById(R.id.add_new_product);
+        product_name = findViewById(R.id.product_name);
+        product_company = findViewById(R.id.product_company);
+        manufacturing_date = findViewById(R.id.manufacturing_date);
+        pro_price = findViewById(R.id.price);
+        Frequency_of_taking = findViewById(R.id.Frequency_of);
+        InputProductImage = findViewById(R.id.select_product_image);
+
+        InputProductImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenGallery();
+
+            }
+        });
+        AddNewProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /// name, company, date_manu, price, frequencytaking;
+                name = product_name.getText().toString().trim();
+                company = product_company.getText().toString().trim();
+                date_manu = manufacturing_date.getText().toString().trim();
+                price = pro_price.getText().toString().trim();
+                frequencytaking = Frequency_of_taking.getText().toString().trim();
+                med = new Medicine(company, name, date_manu, price, frequencytaking);
+                if (ImageUri == null) {
+                    //   Toast.makeText(this, "Product image is mandatory...", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(name)) {
+                    //   Toast.makeText(this, "Please write product name ...", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(company)) {
+                    //   Toast.makeText(this, "Please write product company...", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(date_manu)) {
+                    //    Toast.makeText(this, "Please write product date_manu...", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(price)) {
+                    // Toast.makeText(this, "Please write product price...", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(frequencytaking)) {
+                    // Toast.makeText(this, "Please write product frequency of taking...", Toast.LENGTH_SHORT).show();
+                } else {
+                    productRandomKey = name;
+                    final StorageReference filepath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
+                    final UploadTask uploadtask = filepath.putFile(ImageUri);
+                    uploadtask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            String message = e.toString();
+                            Toast.makeText(AdminAddNewProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(AdminAddNewProductActivity.this, "Product Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
+                            Task<Uri> urlTask = uploadtask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                                @Override
+                                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                    if (!task.isSuccessful()) {
+                                        throw task.getException();
+                                    }
+
+                                    downloadImageUrl = filepath.getDownloadUrl().toString();
+                                    return filepath.getDownloadUrl();
+                                }
+                            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    if (task.isSuccessful()) {
+                                        downloadImageUrl = task.getResult().toString();
+
+                                        Toast.makeText(AdminAddNewProductActivity.this, "got the Product image Url Successfully...", Toast.LENGTH_SHORT).show();
+
+                                        SaveProductInfoToDatabase();
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
 
     }
 

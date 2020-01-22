@@ -5,15 +5,15 @@ import java.util.Map;
 
 public class Doctor {
 
-    private String email, name, license_id;
-    private Map<String, String> mypats = new HashMap<>();
+    public String email, doctor, license_id;
+    public Map<String, String> mypats = new HashMap<>();
 
     public Doctor() {
     }
 
     public Doctor(String email, String name, String license_id) {
         this.email = email;
-        this.name = name;
+        this.doctor = name;
         this.license_id = license_id;
     }
 
@@ -26,12 +26,12 @@ public class Doctor {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getDoctor() {
+        return doctor;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDoctor(String name) {
+        this.doctor = name;
     }
 
     public String getLicense_id() {
@@ -48,5 +48,15 @@ public class Doctor {
 
     public void setMypats(Map<String, String> mypats) {
         this.mypats = mypats;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "email='" + email + '\'' +
+                ", doctor='" + doctor + '\'' +
+                ", license_id='" + license_id + '\'' +
+                ", mypats=" + mypats +
+                '}';
     }
 }
